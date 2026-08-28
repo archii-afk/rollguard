@@ -143,6 +143,14 @@ button:disabled { cursor: not-allowed; }
 .member-detail-law h2 { font-size: 1.125rem; }
 .member-detail-confirmation { padding: 0.75rem 0; }
 
+/* claim preparation keeps decisions beside the resulting government form on larger screens */
+.claim-workspace { display: grid; gap: 1.5rem; align-items: start; }
+.claim-controls { display: grid; gap: 1.25rem; min-width: 0; }
+.claim-fieldset { min-width: 0; }
+.claim-fieldset legend { margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; }
+.claim-preview { display: grid; gap: 1rem; min-width: 0; align-content: start; }
+.form-paper { min-width: 0; }
+
 /* entry and consent records: desktop keeps actions with their evidence; phones retain the safe-area bar */
 .landing-ledger-grid {
   display: grid;
@@ -223,6 +231,8 @@ button:disabled { cursor: not-allowed; }
 @media (min-width: 64rem) {
   .member-record-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .member-record--expanded { grid-column: 1 / -1; }
+  .claim-workspace { grid-template-columns: minmax(0, 0.82fr) minmax(24rem, 1fr); gap: clamp(1.5rem, 4vw, 3rem); }
+  .claim-preview { position: sticky; top: 6.5rem; }
 }
 
 @media (max-width: 47.99rem) {

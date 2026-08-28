@@ -18,7 +18,7 @@ const fieldValue = (f: DraftField) => (f.key === "ground" ? GROUND_LABEL[f.value
 /** The filled form, styled as the paper sheet the ERO's office actually handles. */
 export function FormPreview({ draft, lang }: { draft: DraftOutput; lang: Lang }) {
   return (
-    <article className="roll-paper rounded-sm border border-line shadow-[0_2px_8px_rgba(0,0,0,0.06)] px-4 pt-4 pb-5">
+    <section id="form-language-panel" role="tabpanel" aria-label={`${lang} form preview`} className="form-paper roll-paper rounded-sm border border-line shadow-[0_2px_8px_rgba(0,0,0,0.06)] px-4 pt-4 pb-5">
       <header className="flex items-start justify-between gap-3 border-b-2 border-ink pb-2 mb-3">
         <div>
           <div className="font-display font-bold text-2xl leading-none">FORM {draft.form}</div>
@@ -54,6 +54,6 @@ export function FormPreview({ draft, lang }: { draft: DraftOutput; lang: Lang })
         <span>Signature / thumb impression: ______</span>
         <span>Date: ______</span>
       </div>
-    </article>
+    </section>
   );
 }
