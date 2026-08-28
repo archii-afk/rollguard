@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useSyncExternalStore } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Shell, ActionBar, PrimaryButton, SecondaryButton } from "@/components/Shell";
-import { StatusChip, Stamp, STATUS_META } from "@/components/StatusChip";
+import { StatusChip } from "@/components/StatusChip";
+import { PageHeader } from "@/components/PageHeader";
 import { ProvenanceCard } from "@/components/ProvenanceCard";
 import { ListSkeleton } from "@/components/Skeleton";
 import { loadHousehold, loadConfirmations } from "@/lib/client/session";
@@ -11,14 +12,31 @@ import { applyConfirmation } from "@/lib/client/applyConfirmation";
 import { explainStatus, type MemberAssessment } from "@/lib/diff";
 import type { HouseholdResponse } from "@/lib/api/types";
 
+const EMPTY_CONFIRMATIONS: Record<string, number | "none"> = {};
+
+function subscribeToSession() {
+  return () => {};
+}
+
+function useStoredSessionValue<T>(read: () => T, serverValue: T) {
+  const value = useRef<T | undefined>(undefined);
+  const getSnapshot = useCallback(() => {
+    if (value.current === undefined) value.current = read();
+    return value.current;
+  }, [read]);
+  const getServerSnapshot = useCallback(() => serverValue, [serverValue]);
+
+  return useSyncExternalStore(subscribeToSession, getSnapshot, getServerSnapshot);
+}
+
 export default function MemberDetail() {
   const router = useRouter();
   const { id } = useParams<{ id: string }>();
-  const [data, setData] = useState<HouseholdResponse | null>(null);
-  const [a, setA] = useState<MemberAssessment | null>(null);
+  const data = useStoredSessionValue(loadHousehold, null);
+  const confirmations = useStoredSessionValue(loadConfirmations, EMPTY_CONFIRMATIONS);
 
   useEffect(() => {
-    const h = loadHousehold();
+    const h = data ?? loadHousehold();
     if (!h) {
       router.replace("/");
       return;
@@ -28,9 +46,13 @@ export default function MemberDetail() {
       router.replace("/household");
       return;
     }
-    setData(h);
-    setA(applyConfirmation(raw, loadConfirmations()[id]));
-  }, [id, router]);
+  }, [data, id, router]);
+
+  const a = useMemo<MemberAssessment | null>(() => {
+    if (!data) return null;
+    const raw = data.assessments.find((x) => x.member.id === id);
+    return raw ? applyConfirmation(raw, confirmations[id]) : null;
+  }, [confirmations, data, id]);
 
   const explain = useMemo(() => (a ? explainStatus(a.status) : null), [a]);
 
@@ -46,51 +68,43 @@ export default function MemberDetail() {
   const needsConfirm = a.status === "AMBIGUOUS_MATCH";
 
   return (
-    <Shell step={4}>
-      <header className="mb-4">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-          {a.member.relationToHead} · House {data.household.houseNo} · Part {data.household.partNo}
-        </p>
-        <h1 className="font-display font-bold text-[30px] leading-tight tracking-tight mt-1">
-          {a.member.name.en} <span className="lang-kn text-muted font-normal text-xl">{a.member.name.kn}</span>
-        </h1>
-        <div className="mt-2 flex items-center gap-3">
-          {/* The stamp already names the status; show the chip only when there is no stamp to show. */}
-          {a.looksCorrect || !STATUS_META[a.status].stamp ? (
-            <StatusChip status={a.status} looksCorrect={a.looksCorrect} />
-          ) : (
-            <Stamp status={a.status} animate={false} />
+    <Shell step={4} width="workspace">
+      <PageHeader
+        eyebrow={`${a.member.relationToHead} · House ${data.household.houseNo} · Part ${data.household.partNo}`}
+        title={<>{a.member.name.en} <span className="lang-kn text-muted font-normal text-xl">{a.member.name.kn}</span></>}
+        meta={<StatusChip status={a.status} looksCorrect={a.looksCorrect} />}
+      />
+
+      <div className="member-detail-grid">
+        <div className="member-detail-decision">
+          <section>
+            <h2>What went wrong</h2>
+            <p>
+              {a.looksCorrect
+                ? `${a.member.name.en.split(" ")[0]} asked to be shifted to another constituency, and the draft roll records exactly that. Contesting it would be wrong — and would slow down the claims that matter.`
+                : explain.reason}
+            </p>
+          </section>
+
+          {!nothingToDo && (
+            <section className="member-detail-law">
+              <h2>What the law requires</h2>
+              <p>{explain.lawRequires}</p>
+            </section>
+          )}
+
+          {needsConfirm && (
+            <p className="member-detail-confirmation">
+              A similar entry exists on the draft roll. Go back to the family board and confirm whether it is {a.member.name.en.split(" ")[0]} before drafting a claim.
+            </p>
           )}
         </div>
-      </header>
+        <aside aria-label="Source evidence">
+          <ProvenanceCard items={a.provenance} />
+        </aside>
+      </div>
 
-      <section className="mb-5">
-        <h2 className="font-display font-semibold text-xl mb-1">What went wrong</h2>
-        <p className="text-[15px] text-ink/90">
-          {a.looksCorrect
-            ? `${a.member.name.en.split(" ")[0]} asked to be shifted to another constituency, and the draft roll records exactly that. Contesting it would be wrong — and would slow down the claims that matter.`
-            : explain.reason}
-        </p>
-      </section>
-
-      <section className="mb-5">
-        <ProvenanceCard items={a.provenance} />
-      </section>
-
-      {!nothingToDo && (
-        <section className="mb-5 rounded-md border border-violet/30 bg-violet-soft/50 px-4 py-3">
-          <h2 className="font-display font-semibold text-lg mb-1">What the law requires</h2>
-          <p className="text-sm text-ink/90">{explain.lawRequires}</p>
-        </section>
-      )}
-
-      {needsConfirm && (
-        <p className="mb-5 text-sm text-ink/85">
-          A similar entry exists on the draft roll. Go back to the family board and confirm whether it is {a.member.name.en.split(" ")[0]} before drafting a claim.
-        </p>
-      )}
-
-      <ActionBar>
+      <ActionBar width="workspace">
         <SecondaryButton onClick={() => router.push("/household")}>Back</SecondaryButton>
         {nothingToDo ? (
           <PrimaryButton disabled>No action needed</PrimaryButton>

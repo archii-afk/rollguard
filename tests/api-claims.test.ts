@@ -82,6 +82,13 @@ describe("claims API", () => {
     }
   });
 
+  it("reports browser persistence to a client probe without a failed request", async () => {
+    const response = await GET(new Request("http://x/api/claims?probe=1"));
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ persistence: "browser" });
+  });
+
   it("GET seeds and returns household claims with the persistence marker", async () => {
     const fake = fakePool();
     setPoolForTests(fake.pool);

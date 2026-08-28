@@ -1,9 +1,14 @@
 import { describe, it, expect } from "vitest";
+import type OpenAI from "openai";
 import { draftClaim, templateDraft } from "@/lib/draft";
 import { resolveHousehold } from "@/lib/diff";
 const { assessments } = resolveHousehold("ZZK1400001")!;
 const ameena = assessments.find(a => a.member.id === "ameena")!;
 const input = { assessment: ameena, ground: "ALIVE_RESIDENT" as const, evidence: ["Aadhaar (masked)", "Ration card"], acName: "Shantinagar", partNo: 112 };
+
+function parsingClient(output: unknown): OpenAI {
+  return { responses: { parse: async () => ({ output_parsed: output }) } } as unknown as OpenAI;
+}
 
 describe("templateDraft", () => {
   it("produces Form 6 with trilingual declaration citing the roll row", () => {
@@ -24,11 +29,11 @@ describe("draftClaim", () => {
   it("returns fallback without client", async () => { const r = await draftClaim(input, { client: null }); expect(r.source).toBe("fallback"); });
   it("validates and returns parsed model output", async () => {
     const parsed = templateDraft(input);
-    const fake = { responses: { parse: async () => ({ output_parsed: parsed }) } } as any;
+    const fake = parsingClient(parsed);
     const r = await draftClaim(input, { client: fake }); expect(r.source).toBe("openai"); expect(r.draft.form).toBe("6");
   });
   it("falls back if the model returns an invalid shape", async () => {
-    const bad = { responses: { parse: async () => ({ output_parsed: { form: "9" } }) } } as any;
+    const bad = parsingClient({ form: "9" });
     expect((await draftClaim(input, { client: bad })).source).toBe("fallback");
   });
 });
@@ -51,7 +56,7 @@ describe("reconcile — model prose, deterministic facts", () => {
   });
   it("draftClaim applies reconcile to model output", async () => {
     const wrongForm = { ...templateDraft(input), form: "8" as const };
-    const fake = { responses: { parse: async () => ({ output_parsed: wrongForm }) } } as any;
+    const fake = parsingClient(wrongForm);
     const r = await draftClaim(input, { client: fake });
     expect(r.source).toBe("openai"); expect(r.draft.form).toBe("6");
   });

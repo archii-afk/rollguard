@@ -77,8 +77,9 @@ export async function getClaimsApi(epic: string): Promise<ClaimsApi> {
   if (cached && cached.epic === epic) return cached.api;
   let api: ClaimsApi;
   try {
-    const res = await fetch(`/api/claims?epic=${encodeURIComponent(epic)}`);
-    api = res.status === 503 ? browser() : remote(epic);
+    const res = await fetch("/api/claims?probe=1");
+    const status = await res.json() as { persistence?: Persistence };
+    api = status.persistence === "browser" ? browser() : remote(epic);
   } catch {
     api = browser();
   }

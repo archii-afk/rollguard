@@ -1,27 +1,45 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import { Shell, ActionBar, PrimaryButton } from "@/components/Shell";
 import { MemberCard } from "@/components/MemberCard";
+import { HouseholdSummary } from "@/components/HouseholdSummary";
+import { PageHeader } from "@/components/PageHeader";
 import { Skeleton, ListSkeleton } from "@/components/Skeleton";
 import { loadHousehold, saveHousehold, loadConfirmations, saveConfirmation, type Confirmations } from "@/lib/client/session";
 import { applyConfirmation } from "@/lib/client/applyConfirmation";
 import type { HouseholdResponse } from "@/lib/api/types";
 import type { MemberAssessment } from "@/lib/diff";
 
+const EMPTY_CONFIRMATIONS: Confirmations = {};
+
+function subscribeToSession() {
+  return () => {};
+}
+
+function useStoredSessionValue<T>(read: () => T, serverValue: T) {
+  const value = useRef<T | undefined>(undefined);
+  const getSnapshot = useCallback(() => {
+    if (value.current === undefined) value.current = read();
+    return value.current;
+  }, [read]);
+  const getServerSnapshot = useCallback(() => serverValue, [serverValue]);
+
+  return useSyncExternalStore(subscribeToSession, getSnapshot, getServerSnapshot);
+}
+
 export default function HouseholdBoard() {
   const router = useRouter();
-  const [data, setData] = useState<HouseholdResponse | null>(null);
-  const [confirmations, setConfirmations] = useState<Confirmations>({});
+  const storedHousehold = useStoredSessionValue(loadHousehold, null);
+  const storedConfirmations = useStoredSessionValue(loadConfirmations, EMPTY_CONFIRMATIONS);
+  const [fetchedHousehold, setFetchedHousehold] = useState<HouseholdResponse | null>(null);
+  const [confirmationOverrides, setConfirmationOverrides] = useState<Confirmations>({});
+  const data = fetchedHousehold ?? storedHousehold;
+  const confirmations = fetchedHousehold ? confirmationOverrides : { ...storedConfirmations, ...confirmationOverrides };
 
   useEffect(() => {
-    const h = loadHousehold();
-    if (h) {
-      setData(h);
-      setConfirmations(loadConfirmations());
-      return;
-    }
+    if (data ?? loadHousehold()) return;
     // Deep link for judges and the demo video: /household?epic=ZZK1400001 skips the OTP/consent screens.
     const epic = new URLSearchParams(window.location.search).get("epic");
     if (!epic) {
@@ -36,11 +54,11 @@ export default function HouseholdBoard() {
           return;
         }
         saveHousehold(j);
-        setData(j);
-        setConfirmations({});
+        setFetchedHousehold(j);
+        setConfirmationOverrides({});
       })
       .catch(() => router.replace("/"));
-  }, [router]);
+  }, [data, router]);
 
   const assessments: MemberAssessment[] = useMemo(() => {
     if (!data) return [];
@@ -63,7 +81,7 @@ export default function HouseholdBoard() {
 
   function onConfirm(memberId: string, serial: number | "none") {
     saveConfirmation(memberId, serial);
-    setConfirmations((c) => ({ ...c, [memberId]: serial }));
+    setConfirmationOverrides((c) => ({ ...c, [memberId]: serial }));
   }
 
   if (!data) {
@@ -89,19 +107,26 @@ export default function HouseholdBoard() {
   ].filter(Boolean).join(" · ");
 
   return (
-    <Shell step={3}>
-      <header className="mb-4">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-          AC 153 Shantinagar · Part {household.partNo} · House {household.houseNo}
-        </p>
-        <h1 className="font-display font-bold text-[30px] leading-tight tracking-tight mt-1">Your family on the draft roll</h1>
-        <p className="mt-1 text-[15px] text-ink/85">{summary}</p>
+    <Shell step={3} width="workspace">
+      <PageHeader
+        eyebrow={`AC 153 · Part ${household.partNo} · House ${household.houseNo}`}
+        title="Your household on the draft roll"
+        description={summary}
+      >
         {!data.ai.available && (
-          <p className="mt-2 text-xs text-amber">AI unavailable on the server — identity matches use rule scores only.</p>
+          <p className="household-ai-note">AI unavailable on the server — identity matches use rule scores only.</p>
         )}
-      </header>
+      </PageHeader>
 
-      <ol className="space-y-3">
+      <HouseholdSummary
+        total={assessments.length}
+        action={counts.action}
+        confirm={counts.confirm}
+        fresh={counts.fresh}
+        correct={counts.correct + counts.fine}
+      />
+
+      <ol className="member-record-grid">
         {assessments.map((a, i) => (
           <li key={a.member.id}>
             <MemberCard
@@ -116,7 +141,7 @@ export default function HouseholdBoard() {
         ))}
       </ol>
 
-      <ActionBar>
+      <ActionBar width="workspace">
         <PrimaryButton disabled={!firstActionable} onClick={() => firstActionable && router.push(`/member/${firstActionable.member.id}`)}>
           {counts.action + counts.fresh > 0 ? `Fix ${counts.action + counts.fresh} name${counts.action + counts.fresh === 1 ? "" : "s"}` : "Nothing to fix"}
         </PrimaryButton>

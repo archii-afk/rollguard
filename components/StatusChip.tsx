@@ -26,7 +26,7 @@ const TONE = {
 };
 
 /* A compact label stays on one line and shrinks its container, never wraps to a second line. */
-const CHIP = "inline-flex max-w-full min-w-0 items-center gap-1 whitespace-nowrap rounded-sm border px-2 py-0.5 text-xs font-medium leading-5";
+const CHIP = "status-chip inline-flex max-w-full min-w-0 items-center gap-1 whitespace-nowrap rounded-sm border px-2 py-0.5 text-xs font-medium leading-5";
 
 export function StatusChip({ status, looksCorrect = false }: { status: MemberStatus; looksCorrect?: boolean }) {
   const m = STATUS_META[status];
@@ -53,7 +53,7 @@ export function Stamp({ status, animate = true }: { status: MemberStatus; animat
   return (
     <span
       aria-hidden
-      className={`pointer-events-none select-none whitespace-nowrap font-display font-bold uppercase tracking-[0.18em] text-[13px] leading-none border-[3px] rounded-[3px] px-2 py-1 opacity-85 mix-blend-multiply ${tone} ${animate ? "animate-stamp" : "-rotate-6"}`}
+      className={`stamp pointer-events-none select-none whitespace-nowrap font-display font-bold uppercase tracking-[0.18em] text-[13px] leading-none border-[3px] rounded-[3px] px-2 py-1 opacity-85 mix-blend-multiply ${tone} ${animate ? "animate-stamp" : "-rotate-6"}`}
       style={{ maskImage: "radial-gradient(circle at 30% 40%, black 60%, transparent 100%)", WebkitMaskImage: "radial-gradient(circle at 30% 40%, black 60%, transparent 100%)" }}
     >
       {m.label} · {m.short}

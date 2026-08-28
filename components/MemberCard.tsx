@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { StatusChip, Stamp } from "@/components/StatusChip";
 import { AiBanner } from "@/components/AiBanner";
 import { Icon } from "@/components/Icon";
+import { RecordMeta } from "@/components/RecordMeta";
 import type { MemberAssessment } from "@/lib/diff";
 import type { MatchResponse } from "@/lib/api/types";
 
@@ -30,12 +31,8 @@ export function MemberCard({
   const stampDelay = { animationDelay: `${120 + index * 90}ms` };
 
   return (
-    <article className={`roll-paper relative rounded-sm border shadow-[0_2px_8px_rgba(0,0,0,0.06)] ${actionable ? "border-stamp/40" : "border-line"}`}>
-      <button type="button" onClick={onOpen} aria-label={`${m.name.en}: ${a.looksCorrect ? "looks correct" : a.reason}`} className="pressable block w-full text-left px-3 pt-2 pb-3 hover:bg-violet-soft/40 rounded-sm">
-        <div className="flex items-start justify-between font-mono text-[11px] text-muted nums">
-          <span>{serial ? `Sl. ${serial}` : "not enumerated"} · {m.epic ?? "no EPIC yet"}</span>
-          <span className="capitalize">{m.relationToHead}</span>
-        </div>
+    <article className={`member-record record-card roll-paper ${a.status === "AMBIGUOUS_MATCH" && confirmation === undefined ? "member-record--expanded" : ""} ${actionable ? "border-stamp/40" : "border-line"}`}>
+      <button type="button" onClick={onOpen} aria-label={`${m.name.en}: ${a.looksCorrect ? "looks correct" : a.reason}`} className="member-record-open pressable block w-full text-left px-3 pt-2 pb-3 hover:bg-violet-soft/40 rounded-sm">
         <div className="mt-1 flex gap-3">
           <div className="h-12 w-10 shrink-0 border border-line bg-paper" aria-hidden />
           <div className="min-w-0 text-sm leading-snug">
@@ -44,10 +41,19 @@ export function MemberCard({
             <div className="text-muted">
               House {a.previous?.houseNo ?? "14"} · Age {m.age} · {m.gender}
             </div>
+            <RecordMeta
+              className="mt-2"
+              items={[
+                { label: "Serial", value: serial ?? "Not enumerated" },
+                { label: "EPIC", value: m.epic ?? "No EPIC yet" },
+                { label: "Relation", value: m.relationToHead },
+              ]}
+            />
           </div>
         </div>
         <div className="mt-2 flex flex-wrap items-center gap-2">
           <StatusChip status={a.status} looksCorrect={a.looksCorrect} />
+          {!a.looksCorrect && <span style={stampDelay}><Stamp status={a.status} /></span>}
           {actionable && (
             <span className="inline-flex items-center gap-1 text-xs text-violet font-medium">
               Fix this <Icon name="arrow-right" size={14} />
@@ -58,11 +64,6 @@ export function MemberCard({
           <p className="mt-1 text-sm text-muted">{m.name.en.split(" ")[0]} has moved and asked to shift — this deletion looks correct. No action.</p>
         ) : (
           a.status !== "AMBIGUOUS_MATCH" && <p className="mt-1 text-sm text-ink/85">{a.reason}</p>
-        )}
-        {!a.looksCorrect && (
-          <div className="absolute right-3 top-7" style={stampDelay}>
-            <Stamp status={a.status} />
-          </div>
         )}
       </button>
 
@@ -94,7 +95,7 @@ function MatchConfirm({ assessment: a, epic, onConfirm }: { assessment: MemberAs
   const reasons = (r?.reasons ?? top.rules).map(humanRule);
 
   return (
-    <div className="border-t border-dashed border-line bg-violet-soft/50 px-3 py-3 space-y-2">
+    <div className="docket-notice border-t border-dashed border-line bg-violet-soft/50 px-3 py-3 space-y-2">
       <p className="text-sm">
         <span className="font-semibold">{a.member.name.en}</span> is not on the draft roll under this EPIC. A similar entry exists:
       </p>

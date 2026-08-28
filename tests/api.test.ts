@@ -2,6 +2,14 @@ import { describe, it, expect } from "vitest";
 import { POST as household } from "@/app/api/household/route";
 import { POST as match } from "@/app/api/match/route";
 import { POST as draft } from "@/app/api/draft/route";
+
+interface HouseholdResponse {
+  assessments: Array<{
+    member: { id: string };
+    candidates: Array<{ entry: { serial: number } }>;
+  }>;
+}
+
 const post = (fn: (r: Request) => Promise<Response>, body: unknown) => fn(new Request("http://x", { method: "POST", body: JSON.stringify(body), headers: { "content-type": "application/json" } }));
 
 describe("/api/household", () => {
@@ -25,8 +33,8 @@ describe("/api/draft", () => {
     expect(j.draft.form).toBe("6"); expect(j.assessment.status).toBe("MARKED_DEAD");
   });
   it("applies candidateSerial before drafting Rafeeq's Form 8", async () => {
-    const h = await (await post(household, { epic: "ZZK1400001" })).json();
-    const serial = h.assessments.find((a: any) => a.member.id === "rafeeq").candidates[0].entry.serial;
+    const h = await (await post(household, { epic: "ZZK1400001" })).json() as HouseholdResponse;
+    const serial = h.assessments.find((a) => a.member.id === "rafeeq")!.candidates[0].entry.serial;
     const j = await (await post(draft, { epic: "ZZK1400001", memberId: "rafeeq", ground: "NOT_DUPLICATE", evidence: [], candidateSerial: serial })).json();
     expect(j.assessment.status).toBe("DUPLICATE_FLAGGED"); expect(j.draft.form).toBe("8");
   });

@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Shell } from "@/components/Shell";
+import { PageHeader } from "@/components/PageHeader";
 import { MockBadge } from "@/components/MockBadge";
+import { QueueSummary } from "@/components/QueueSummary";
 import { STATE_LABELS } from "@/components/Timeline";
 import { ListSkeleton } from "@/components/Skeleton";
 import { DEADLINES, type Claim, type ClaimEvent, type ClaimState } from "@/lib/claims";
@@ -64,19 +66,24 @@ export default function BloQueue() {
   const dueSoon = claims.filter((c) => c.state === "CLAIM_SUBMITTED").length;
 
   return (
-    <Shell wide>
-      <header className="mb-5">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Officer view · BLO, Part 112 · AC 153 Shantinagar</p>
-        <h1 className="font-display font-bold text-[30px] leading-tight tracking-tight mt-1">Claims queue</h1>
-        <p className="mt-1 text-[15px] text-ink/85">
-          {claims.length} claim{claims.length === 1 ? "" : "s"} for this part · {dueSoon} awaiting a field visit within {DEADLINES.bloVisitDays} days
-        </p>
-        <p className="mt-2 text-xs text-muted">
+    <Shell width="wide">
+      <PageHeader
+        eyebrow="Officer view · BLO, Part 112 · AC 153 Shantinagar"
+        title="Claims queue"
+        description={`${claims.length} claim${claims.length === 1 ? "" : "s"} for this part · ${dueSoon} awaiting a field visit within ${DEADLINES.bloVisitDays} days`}
+      >
+        <MockBadge label="Mock role" />
+      </PageHeader>
+
+      <div className="queue-context">
+        <p className="text-xs text-muted">
           <MockBadge label="mock role" /> There is no officer login here. Every action below runs the same state machine the citizen’s tracker uses
           {api?.persistence === "postgres" ? ", against the shared Postgres store" : ", in this browser"}.{" "}
           <Link href="/claims" className="underline underline-offset-2">Citizen view</Link>
         </p>
-      </header>
+      </div>
+
+      <QueueSummary total={claims.length} dueSoon={dueSoon} groups={byState.length} />
 
       {msg && (
         <p role="alert" className="mb-4 rounded-md border border-stamp/40 bg-stamp-soft px-3 py-2 text-sm">{msg}</p>
@@ -88,14 +95,14 @@ export default function BloQueue() {
         <p className="rounded-md border border-line bg-card px-4 py-6 text-center text-sm text-muted">Queue is empty.</p>
       ) : (
         byState.map(({ state, items }) => (
-          <section key={state} className="mb-6">
-            <h2 className="font-display font-semibold text-lg mb-2 flex items-baseline gap-2">
-              {STATE_LABELS[state].title}
-              <span className="font-mono text-xs text-muted">{items.length}</span>
+          <section key={state} className="queue-group">
+            <h2 className="queue-group-heading">
+              <span>{STATE_LABELS[state].title}</span>
+              <span className="queue-group-count nums">{items.length}</span>
             </h2>
-            <ul className="grid gap-3 sm:grid-cols-2">
+            <ul className="queue-card-grid">
               {items.map((c) => (
-                <li key={c.id} className="rounded-md border border-line bg-card px-4 py-3">
+                <li key={c.id} className="queue-card">
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <div className="font-semibold">{c.memberName}</div>
@@ -105,7 +112,7 @@ export default function BloQueue() {
                   </div>
                   <p className="mt-2 text-sm">{GROUND_TEXT[c.ground]}</p>
                   {c.history.at(-1)?.note && <p className="mt-1 text-xs text-muted italic">“{c.history.at(-1)!.note}”</p>}
-                  <div className="mt-3 flex flex-wrap gap-2">
+                  <div className="queue-card-actions">
                     {c.state === "CLAIM_SUBMITTED" && (
                       <Btn onClick={() => act(c, { type: "BLO_SCHEDULED", visitDate: "2026-09-02" })}>Schedule field visit</Btn>
                     )}
@@ -148,7 +155,7 @@ function Btn({ children, onClick, tone = "default" }: { children: React.ReactNod
     <button
       type="button"
       onClick={onClick}
-      className={`pressable min-h-[44px] rounded-md border px-3 text-sm font-medium ${
+      className={`pressable queue-action min-h-[44px] rounded-md border px-3 text-sm font-medium ${
         tone === "danger" ? "border-stamp/50 text-stamp bg-stamp-soft/50 hover:bg-stamp-soft" : "border-violet/40 text-violet bg-violet-soft/50 hover:bg-violet-soft"
       }`}
     >

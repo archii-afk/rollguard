@@ -1,11 +1,11 @@
 /** Reserved-space placeholders so async screens never jump (CLS) and announce busy state. */
 export function Skeleton({ className = "" }: { className?: string }) {
-  return <div className={`skeleton ${className}`} aria-hidden />;
+  return <div className={`skeleton skeleton-surface ${className}`} aria-hidden />;
 }
 
 export function CardSkeleton({ lines = 3 }: { lines?: number }) {
   return (
-    <div className="rounded-sm border border-line bg-card px-3 pt-3 pb-4 space-y-2" aria-hidden>
+    <div className="record-card skeleton-card px-3 pt-3 pb-4 space-y-2" aria-hidden>
       <Skeleton className="h-3 w-40" />
       <div className="flex gap-3 pt-1">
         <Skeleton className="h-12 w-10" />

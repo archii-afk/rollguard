@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Shell, ActionBar, PrimaryButton } from "@/components/Shell";
-import { MockBadge } from "@/components/MockBadge";
+import { Shell } from "@/components/Shell";
 import { Countdown } from "@/components/Countdown";
 import { Icon, type IconName } from "@/components/Icon";
+import { EntryDocket } from "@/components/EntryDocket";
 import { saveHousehold, clearJourney } from "@/lib/client/session";
 import type { HouseholdResponse, ApiError } from "@/lib/api/types";
 
@@ -25,9 +25,6 @@ export default function Landing() {
   const [otp, setOtp] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const epicOk = /^ZZK\d{7}$/.test(epic);
-  const otpOk = /^\d{6}$/.test(otp);
 
   async function verify() {
     setBusy(true);
@@ -60,90 +57,48 @@ export default function Landing() {
   }
 
   return (
-    <Shell step={1}>
-      {/* Hero: the artifact itself — a roll entry with the stamp that starts the problem */}
-      <section className="mb-6">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted mb-2">SIR 2026 · draft roll published 24 Aug</p>
-        <h1 className="font-display font-bold text-[34px] leading-[1.05] tracking-tight">
-          Is your family still on the voter list?
-        </h1>
-        <p className="mt-3 text-[15px] text-ink/85">
-          The draft roll marked <span className="font-semibold">1.07 crore names</span> in Karnataka as absent, shifted, dead or duplicate.
-          Check every name in your house in one go, and get the wrong ones back before the window closes.
-        </p>
-        <div className="mt-3">
-          <Countdown until={CLAIM_WINDOW_END} />
-        </div>
-      </section>
-
-      <SampleEntry />
-
-      <ul className="mt-5 grid gap-2" aria-label="What RollGuard does">
-        {BENEFITS.map((b) => (
-          <li key={b.text} className="flex items-start gap-2.5 text-[15px]">
-            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-soft text-violet">
-              <Icon name={b.icon} size={14} />
-            </span>
-            <span>{b.text}</span>
-          </li>
-        ))}
-      </ul>
-
-      <section className="mt-6 space-y-4" aria-live="polite">
-        <label className="block">
-          <span className="text-sm font-medium">Any one EPIC number from your house</span>
-          <input
-            inputMode="text"
-            autoCapitalize="characters"
-            autoComplete="off"
-            value={epic}
-            disabled={stage === "otp"}
-            onChange={(e) => setEpic(e.target.value.toUpperCase().replace(/\s/g, ""))}
-            placeholder="ZZK1234567"
-            className="mt-1 w-full min-h-[52px] rounded-md border border-ink/30 bg-card px-3 font-mono text-xl tracking-[0.12em] nums placeholder:text-muted/60 disabled:bg-paper transition-[border-color] duration-150"
-          />
-          <span className="mt-1 block text-xs text-muted">
-            We find everyone enrolled at the same house.{" "}
-            <button type="button" className="underline underline-offset-2 text-violet" onClick={() => setEpic(DEMO_EPIC)}>
-              Use demo EPIC {DEMO_EPIC}
-            </button>
-          </span>
-        </label>
-
-        {stage === "otp" && (
-          <label className="block">
-            <span className="text-sm font-medium flex items-center gap-2">
-              OTP sent to the mobile linked to this EPIC <MockBadge label="mock · any 6 digits" />
-            </span>
-            <input
-              inputMode="numeric"
-              autoFocus
-              value={otp}
-              onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
-              placeholder="••••••"
-              className="mt-1 w-full min-h-[52px] rounded-md border border-ink/30 bg-card px-3 font-mono text-2xl tracking-[0.4em]"
-            />
-          </label>
-        )}
-
-        {error && (
-          <p role="alert" className="rounded-md border border-stamp/40 bg-stamp-soft px-3 py-2 text-sm">
-            {error}
+    <Shell step={1} width="workspace">
+      <div className="landing-ledger-grid">
+        <section className="landing-story">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted mb-2">SIR 2026 · draft roll published 24 Aug</p>
+          <h1 className="font-display font-bold text-[34px] leading-[1.05] tracking-tight">
+            Is your family still on the voter list?
+          </h1>
+          <p className="mt-3 text-[15px] text-ink/85">
+            The draft roll marked <span className="font-semibold">1.07 crore names</span> in Karnataka as absent, shifted, dead or duplicate.
+            Check every name in your house in one go, and get the wrong ones back before the window closes.
           </p>
-        )}
-      </section>
+          <div className="mt-3">
+            <Countdown until={CLAIM_WINDOW_END} />
+          </div>
 
-      <ActionBar>
-        {stage === "epic" ? (
-          <PrimaryButton disabled={!epicOk} onClick={() => { setError(null); setStage("otp"); }}>
-            Send OTP
-          </PrimaryButton>
-        ) : (
-          <PrimaryButton disabled={!otpOk || busy} onClick={verify}>
-            {busy ? "Reading the roll…" : "Check my family"}
-          </PrimaryButton>
-        )}
-      </ActionBar>
+          <div className="landing-source-slip"><SampleEntry /></div>
+
+          <ul className="mt-5 grid gap-2" aria-label="What RollGuard does">
+            {BENEFITS.map((b) => (
+              <li key={b.text} className="flex items-start gap-2.5 text-[15px]">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-soft text-violet">
+                  <Icon name={b.icon} size={14} />
+                </span>
+                <span>{b.text}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+        <EntryDocket
+          stage={stage}
+          epic={epic}
+          otp={otp}
+          error={error}
+          busy={busy}
+          onEpicChange={setEpic}
+          onOtpChange={setOtp}
+          onUseDemo={() => setEpic(DEMO_EPIC)}
+          onSendOtp={() => { setError(null); setStage("otp"); }}
+          onEditEpic={() => { setStage("epic"); setOtp(""); }}
+          onVerify={verify}
+        />
+      </div>
     </Shell>
   );
 }
