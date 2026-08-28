@@ -55,7 +55,7 @@ export function EntryDocket({
             />
             <span className="mt-1 block text-xs text-muted">
               We find everyone enrolled at the same house.{" "}
-              <button type="button" className="underline underline-offset-2 text-violet" onClick={onUseDemo}>
+              <button type="button" className="-my-3 inline-flex min-h-11 min-w-11 items-center justify-center underline underline-offset-2 text-violet" onClick={onUseDemo}>
                 Use demo EPIC ZZK1400001
               </button>
             </span>
@@ -65,7 +65,7 @@ export function EntryDocket({
             <div className="entry-docket-epic">
               <span className="text-xs text-muted">EPIC number</span>
               <strong className="font-mono tracking-[0.08em]">{epic}</strong>
-              <button type="button" className="text-sm text-violet underline underline-offset-2" onClick={onEditEpic}>Edit EPIC</button>
+              <button type="button" className="hidden min-h-11 min-w-11 items-center justify-center text-sm text-violet underline underline-offset-2 md:inline-flex" onClick={onEditEpic}>Edit EPIC</button>
             </div>
             <label className="block">
               <span className="text-sm font-medium flex items-center gap-2">

@@ -79,6 +79,50 @@ describe("Civic Ledger shell", () => {
     expect(html).toContain('role="alert"');
   });
 
+  it("keeps entry edits to one responsive action while preserving 44px targets", () => {
+    const epicHtml = renderToStaticMarkup(
+      <EntryDocket
+        stage="epic"
+        epic="ZZK1400001"
+        otp=""
+        error={null}
+        busy={false}
+        onEpicChange={() => {}}
+        onOtpChange={() => {}}
+        onUseDemo={() => {}}
+        onSendOtp={() => {}}
+        onEditEpic={() => {}}
+        onVerify={() => {}}
+      />,
+    );
+    const otpHtml = renderToStaticMarkup(
+      <EntryDocket
+        stage="otp"
+        epic="ZZK1400001"
+        otp="123456"
+        error={null}
+        busy={false}
+        onEpicChange={() => {}}
+        onOtpChange={() => {}}
+        onUseDemo={() => {}}
+        onSendOtp={() => {}}
+        onEditEpic={() => {}}
+        onVerify={() => {}}
+      />,
+    );
+    const demo = epicHtml.match(/<button[^>]*>Use demo EPIC ZZK1400001<\/button>/)?.[0] ?? "";
+    const edits = otpHtml.match(/<button[^>]*>Edit EPIC<\/button>/g) ?? [];
+
+    expect(demo).toContain("min-h-11");
+    expect(demo).toContain("min-w-11");
+    expect(edits).toHaveLength(2);
+    expect(edits[0]).toContain("hidden");
+    expect(edits[0]).toContain("md:inline-flex");
+    expect(edits[0]).toContain("min-h-11");
+    expect(edits[0]).toContain("min-w-11");
+    expect(edits[1]).toContain("min-h-[48px]");
+  });
+
   it("renders the consent record disclosures before access is granted", () => {
     const html = renderToStaticMarkup(
       <ConsentRecord house={{ houseNo: "14", partNo: 112, n: 4 }} />,
