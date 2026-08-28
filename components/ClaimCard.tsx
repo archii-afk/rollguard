@@ -3,6 +3,7 @@ import { Timeline } from "@/components/Timeline";
 import { NotificationFeed } from "@/components/NotificationFeed";
 import { LangTabs, tabIdForLanguage, type Lang } from "@/components/LangTabs";
 import { Countdown } from "@/components/Countdown";
+import { ClaimNow } from "@/components/ClaimNow";
 import { MockBadge } from "@/components/MockBadge";
 import { DEADLINES, nextDemoEvent, type Claim, type ClaimEvent } from "@/lib/claims";
 
@@ -39,7 +40,7 @@ export function ClaimCard({
   const messagesPanelId = `claim-${claim.id}-messages-panel`;
 
   return (
-    <article className={`rounded-md border bg-card ${tone} ${isNew ? "ring-2 ring-violet/40" : ""}`}>
+    <article className={`claim-record rounded-md border bg-card ${tone} ${isNew ? "ring-2 ring-violet/40" : ""}`}>
       <header className="px-4 pt-4 pb-3 border-b border-line">
         <div className="flex items-start justify-between gap-2">
           <div>
@@ -69,20 +70,24 @@ export function ClaimCard({
         </div>
       </header>
 
-      <div className="px-4 py-4 grid gap-5">
-        <section>
-          <h3 className="text-[11px] font-mono uppercase tracking-wider text-muted mb-3">Where the claim is</h3>
+      <ClaimNow claim={claim} />
+
+      <div className="claim-detail-grid">
+        <section aria-labelledby={`timeline-${claim.id}`}>
+          <h3 id={`timeline-${claim.id}`} className="text-[11px] font-mono uppercase tracking-wider text-muted mb-3">Where the claim is</h3>
           <Timeline history={claim.history} current={claim.state} />
         </section>
 
-        <section>
+        <section aria-labelledby={`messages-${claim.id}`}>
           <div className="flex flex-col gap-2 mb-2 sm:flex-row sm:items-center sm:justify-between">
-            <h3 className="text-[11px] font-mono uppercase tracking-wider text-muted">Messages to your phone</h3>
+            <h3 id={`messages-${claim.id}`} className="text-[11px] font-mono uppercase tracking-wider text-muted">Messages to your phone</h3>
             <LangTabs value={lang} panelId={messagesPanelId} label="Message language" onChange={setLang} />
           </div>
           <NotificationFeed items={claim.notifications} lang={lang} panelId={messagesPanelId} tabId={tabIdForLanguage(messagesPanelId, lang)} />
         </section>
+      </div>
 
+      <div className="px-4 pb-4 grid gap-4">
         {error && (
           <p role="alert" className="rounded-md border border-stamp/40 bg-stamp-soft px-3 py-2 text-sm">
             {error}

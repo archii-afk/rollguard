@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Shell, ActionBar, PrimaryButton, SecondaryButton } from "@/components/Shell";
 import { ClaimCard } from "@/components/ClaimCard";
@@ -9,8 +9,31 @@ import { ListSkeleton } from "@/components/Skeleton";
 import type { Claim, ClaimEvent } from "@/lib/claims";
 import { getClaimsApi, ClaimsApiError, type ClaimsApi } from "@/lib/client/remoteClaims";
 import { loadHousehold } from "@/lib/client/session";
+import type { HouseholdResponse } from "@/lib/api/types";
 
 const DEMO_EPIC = "ZZK1400001";
+
+function subscribeToSession() {
+  return () => {};
+}
+
+function useStoredSessionValue<T>(read: () => T, serverValue: T) {
+  const value = useRef<{ read: () => T; snapshot: T } | undefined>(undefined);
+  const getSnapshot = useCallback(() => {
+    if (!value.current || value.current.read !== read) value.current = { read, snapshot: read() };
+    return value.current.snapshot;
+  }, [read]);
+  const getServerSnapshot = useCallback(() => serverValue, [serverValue]);
+
+  return useSyncExternalStore(subscribeToSession, getSnapshot, getServerSnapshot);
+}
+
+export function deriveClaimsInitialState(household: HouseholdResponse | null) {
+  return {
+    epic: household?.household.members.find((member) => member.epic)?.epic ?? DEMO_EPIC,
+    hasHousehold: !!household,
+  };
+}
 
 export default function ClaimsPage() {
   return (
@@ -28,13 +51,12 @@ function ClaimsInner() {
   const [claims, setClaims] = useState<Claim[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [hasHousehold, setHasHousehold] = useState(false);
+  const household = useStoredSessionValue<HouseholdResponse | null | undefined>(loadHousehold, undefined);
+  const { epic, hasHousehold } = deriveClaimsInitialState(household ?? null);
 
   useEffect(() => {
     // Claims are scoped to the household the citizen logged in with; judges who deep-link get the demo house.
-    const h = loadHousehold();
-    const epic = h?.household.members.find((m) => m.epic)?.epic ?? DEMO_EPIC;
-    setHasHousehold(!!h);
+    if (household === undefined) return;
     let live = true;
     getClaimsApi(epic)
       .then(async (a) => {
@@ -45,7 +67,7 @@ function ClaimsInner() {
       })
       .catch(() => live && setLoadError("Could not load claims. Check your connection and reload."));
     return () => { live = false; };
-  }, []);
+  }, [epic, household]);
 
   async function onEvent(id: string, e: ClaimEvent) {
     if (!api) return;
@@ -77,7 +99,7 @@ function ClaimsInner() {
   const seeded = claims.some((c) => (c.submittedAt ?? "").startsWith("2026-08-26"));
 
   return (
-    <Shell step={5}>
+    <Shell step={5} width="workspace">
       <header className="mb-4">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Claims · SIR 2026</p>
         <h1 className="font-display font-bold text-[30px] leading-tight tracking-tight mt-1">Where each claim stands</h1>
