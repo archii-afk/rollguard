@@ -110,6 +110,85 @@ button:disabled { cursor: not-allowed; }
 .skeleton-card { min-height: 8.5rem; }
 .skeleton-surface { box-shadow: inset 0 0 0 1px rgb(255 255 255 / 30%); }
 
+/* entry and consent records: desktop keeps actions with their evidence; phones retain the safe-area bar */
+.landing-ledger-grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+.landing-source-slip { margin-top: 1.5rem; }
+.entry-docket { overflow: hidden; }
+.entry-docket-header,
+.consent-record-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-paper) 72%, var(--color-card));
+}
+.folio,
+.entry-docket-status {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.folio { color: var(--color-violet); }
+.entry-docket-status { color: var(--color-muted); }
+.entry-docket-body { display: grid; gap: 1rem; padding: 1rem; }
+.entry-docket-body h2,
+.consent-record-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.entry-docket-epic {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.25rem 0.75rem;
+  align-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  background: var(--color-paper);
+}
+.entry-docket-epic span { grid-column: 1 / -1; }
+.docket-desktop-action { display: none; }
+.consent-layout { display: grid; gap: 1rem; margin-top: 1.5rem; align-items: start; }
+.consent-record-row {
+  display: grid;
+  grid-template-columns: minmax(5.75rem, 0.7fr) minmax(0, 2fr);
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-top: 1px solid var(--color-line);
+  font-size: 0.875rem;
+}
+.trust-note {
+  border-left: 3px solid var(--color-violet);
+  padding: 0.875rem 1rem;
+  background: var(--color-violet-soft);
+  color: var(--color-ink);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+@media (min-width: 48rem) {
+  .landing-ledger-grid { grid-template-columns: minmax(0, 1.1fr) minmax(22rem, 0.9fr); gap: clamp(2rem, 5vw, 5rem); }
+  .entry-docket { position: sticky; top: 6.5rem; }
+  .docket-desktop-action { display: block; }
+  .docket-mobile-action { display: none; }
+  .consent-layout { grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.38fr); gap: 1.5rem; }
+}
+
+@media (max-width: 47.99rem) {
+  .docket-desktop-action { display: none; }
+  .docket-mobile-action { display: block; }
+}
+
 /* shared interaction states */
 .pressable {
   transition: background-color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out),
