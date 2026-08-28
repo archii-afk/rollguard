@@ -1,32 +1,49 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #1b1f3b;
-  --color-paper: #fbf8f2;
+  /* photocopy paper, ink, and the one accent: indelible-ink violet */
+  --color-paper: #f2f2ef;
   --color-card: #ffffff;
-  --color-saffron: #e8731a;
-  --color-saffron-deep: #c85f0f;
-  --color-leaf: #138808;
-  --color-danger: #b42318;
-  --color-warn: #b54708;
-  --color-muted: #5f6372;
-  --color-line: #e6e1d8;
+  --color-ink: #17181c;
+  --color-muted: #6b6f7a;
+  --color-line: #d9d9d3;
+  --color-violet: #4b2a82;
+  --color-violet-soft: #ede7f6;
+  --color-stamp: #c8102e;
+  --color-stamp-soft: #fbe9ec;
+  --color-ledger: #1b7f4b;
+  --color-ledger-soft: #e6f4ec;
+  --color-amber: #b7791f;
+  --color-amber-soft: #fdf3e1;
+
   --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-sans), sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
   --font-kn: var(--font-kn), var(--font-sans), sans-serif;
   --font-hi: var(--font-hi), var(--font-sans), sans-serif;
+
+  --animate-stamp: stamp-in 320ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  @keyframes stamp-in {
+    from { transform: scale(1.6) rotate(-8deg); opacity: 0; }
+    to { transform: scale(1) rotate(-6deg); opacity: 1; }
+  }
 }
 
-html {
-  background: var(--color-paper);
-  color: var(--color-ink);
-}
-
-body {
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
+html { background: var(--color-paper); color: var(--color-ink); }
+body { font-family: var(--font-sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 
 .lang-kn { font-family: var(--font-kn); }
 .lang-hi { font-family: var(--font-hi); }
+
+/* roll-entry paper texture: a faint ruled grid like a photocopied roll page */
+.roll-paper {
+  background-color: var(--color-card);
+  background-image: linear-gradient(to bottom, transparent 31px, var(--color-line) 31px);
+  background-size: 100% 32px;
+}
+
+:focus-visible { outline: 3px solid var(--color-violet); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-stamp { animation: none; }
+}
