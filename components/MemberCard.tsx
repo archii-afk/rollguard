@@ -74,19 +74,22 @@ export function MemberCard({
 }
 
 function MatchConfirm({ assessment: a, epic, onConfirm }: { assessment: MemberAssessment; epic: string; onConfirm: (s: number | "none") => void }) {
-  const [rank, setRank] = useState<MatchResponse | null>(null);
+  // null = still asking the model; "failed" = the request itself failed (rule score shown, banner says so)
+  const [rank, setRank] = useState<MatchResponse | null | "failed">(null);
   const top = a.candidates[0];
 
   useEffect(() => {
     let live = true;
     fetch("/api/match", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ epic, memberId: a.member.id }) })
       .then((r) => (r.ok ? r.json() : null))
-      .then((j: MatchResponse | null) => live && j && setRank(j))
-      .catch(() => {});
+      .then((j: MatchResponse | null) => live && setRank(j ?? "failed"))
+      .catch(() => live && setRank("failed"));
     return () => { live = false; };
   }, [a.member.id, epic]);
+  const pending = rank === null;
+  const ranked = rank && rank !== "failed" ? rank : null;
 
-  const r = rank?.rankings.find((x) => x.candidateSerial === top.entry.serial);
+  const r = ranked?.rankings.find((x) => x.candidateSerial === top.entry.serial);
   const probability = r?.sameProbability ?? Math.min(0.95, top.score + 0.2);
   const reasons = (r?.reasons ?? top.rules).map(humanRule);
 
@@ -102,13 +105,22 @@ function MatchConfirm({ assessment: a, epic, onConfirm }: { assessment: MemberAs
           {top.entry.flag && <span className="text-stamp"> · flag {top.entry.flag}</span>}
         </div>
       </div>
-      <div className="text-sm">
-        <span className="font-medium">Same person? {Math.round(probability * 100)}% likely.</span>
+      <div className="text-sm" aria-busy={pending}>
+        <span className="font-medium nums">
+          Same person? {Math.round(probability * 100)}% likely{pending ? " by the rules" : ""}.
+        </span>
         <ul className="mt-1 list-disc pl-5 text-ink/80">
           {reasons.slice(0, 3).map((x, i) => <li key={i}>{x}</li>)}
         </ul>
       </div>
-      <AiBanner source={rank ? rank.source : "fallback"} model={rank?.model} what="match" />
+      {pending ? (
+        <div role="status" className="flex items-center gap-1.5 text-xs text-muted font-mono">
+          <span className="skeleton inline-block h-3 w-3 rounded-full" aria-hidden />
+          Checking this match with AI — a few seconds
+        </div>
+      ) : (
+        <AiBanner source={ranked ? ranked.source : "fallback"} model={ranked?.model} what="match" />
+      )}
       <div className="flex gap-2 pt-1">
         <button type="button" onClick={() => onConfirm(top.entry.serial)} className="pressable min-h-[44px] flex-1 rounded-md bg-violet px-3 font-display font-semibold text-white hover:bg-[#3d2169]">
           Yes, that’s {a.member.name.en.split(" ")[0]}
