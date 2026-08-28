@@ -5,6 +5,7 @@ import { DEADLINES } from "@/lib/claims";
 
 const MODEL = process.env.OPENAI_MODEL ?? "gpt-5.6";
 const AI_ON = !!process.env.OPENAI_API_KEY;
+const DB_ON = !!process.env.DATABASE_URL;
 
 const WORKING = [
   ["Household resolution and two-roll diff", "lib/diff over synthetic roll snapshots for one booth"],
@@ -12,6 +13,9 @@ const WORKING = [
   ["Cross-script identity ranking", `OpenAI ${MODEL} ranks only the ambiguous pairs the rule pre-filter finds; rule-based fallback`],
   ["Form 6 / Form 8 drafting in English, Kannada, Hindi", `OpenAI ${MODEL} with a strict JSON schema; template fallback`],
   ["Claim state machine, deadlines, SMS-style notifications", "lib/claims — pure functions, unit-tested; the model never decides state"],
+  ...(DB_ON
+    ? [["Claim persistence", "Postgres (Neon) behind /api/claims, keyed by the household's EPIC; transitions run server-side with an optimistic state check, so the citizen tracker and the officer queue read one record"]]
+    : []),
 ];
 
 const MOCKED = [
@@ -21,7 +25,9 @@ const MOCKED = [
   ["Evidence uploads", "Checklist only; nothing is stored", "DigiLocker fetch or upload with scanning and retention rules"],
   ["Submission and acknowledgement number", "Generated locally", "Form 6/8 API submission or assisted BLO filing"],
   ["BLO, ERO and DEO actions", "“Simulate next step” walks a scripted outcome; the officer queue at /blo has no real login", "ERO-Net workflow events and officer authentication"],
-  ["Claim persistence", "This browser’s storage behind a ClaimStore interface", "Server-side store keyed by the acknowledgement number"],
+  ...(DB_ON
+    ? [["Officer identity", "Anyone can open /blo and act as the BLO", "Officer authentication and an audit trail on every transition"]]
+    : [["Claim persistence", "This browser’s storage behind a ClaimStore interface (no database configured on this deployment)", "Server-side store keyed by the acknowledgement number"]]),
 ];
 
 export default function About() {

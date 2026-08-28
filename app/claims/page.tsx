@@ -1,13 +1,15 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Shell, ActionBar, PrimaryButton, SecondaryButton } from "@/components/Shell";
 import { ClaimCard } from "@/components/ClaimCard";
 import { MockBadge } from "@/components/MockBadge";
-import { LocalStorageClaimStore, transition, DeadlineMissed, InvalidTransition, type Claim, type ClaimEvent } from "@/lib/claims";
-import { seedDemoClaims } from "@/lib/client/seedDemoClaims";
+import type { Claim, ClaimEvent } from "@/lib/claims";
+import { getClaimsApi, ClaimsApiError, type ClaimsApi } from "@/lib/client/remoteClaims";
 import { loadHousehold } from "@/lib/client/session";
+
+const DEMO_EPIC = "ZZK1400001";
 
 export default function ClaimsPage() {
   return (
@@ -21,43 +23,57 @@ function ClaimsInner() {
   const router = useRouter();
   const params = useSearchParams();
   const newId = params.get("new");
-  const store = useMemo(() => new LocalStorageClaimStore(), []);
+  const [api, setApi] = useState<ClaimsApi | null>(null);
   const [claims, setClaims] = useState<Claim[]>([]);
-  const [seeded, setSeeded] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  // Read browser storage only after hydration so server and first client render agree.
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [hasHousehold, setHasHousehold] = useState(false);
 
   useEffect(() => {
-    setSeeded(seedDemoClaims(store));
-    setClaims(store.list());
-    setHasHousehold(!!loadHousehold());
-  }, [store]);
+    // Claims are scoped to the household the citizen logged in with; judges who deep-link get the demo house.
+    const h = loadHousehold();
+    const epic = h?.household.members.find((m) => m.epic)?.epic ?? DEMO_EPIC;
+    setHasHousehold(!!h);
+    let live = true;
+    getClaimsApi(epic)
+      .then(async (a) => {
+        const list = await a.list();
+        if (!live) return;
+        setApi(a);
+        setClaims(list);
+      })
+      .catch(() => live && setLoadError("Could not load claims. Check your connection and reload."));
+    return () => { live = false; };
+  }, []);
 
-  function onEvent(id: string, e: ClaimEvent) {
-    const c = store.get(id);
+  async function onEvent(id: string, e: ClaimEvent) {
+    if (!api) return;
+    const c = claims.find((x) => x.id === id);
     if (!c) return;
     try {
-      const next = transition(c, e, new Date());
-      store.save(next);
-      setClaims(store.list());
+      const next = await api.apply(c, e);
+      setClaims((xs) => xs.map((x) => (x.id === id ? next : x)));
       setErrors((x) => ({ ...x, [id]: "" }));
     } catch (err) {
       const msg =
-        err instanceof DeadlineMissed ? `Too late: ${err.message}`
-        : err instanceof InvalidTransition ? `That step is not possible from here: ${err.message}`
+        err instanceof ClaimsApiError && err.code === "DEADLINE_MISSED" ? `Too late: ${err.message}`
+        : err instanceof ClaimsApiError && err.code === "INVALID_TRANSITION" ? `That step is not possible from here: ${err.message}`
+        : err instanceof ClaimsApiError && err.code === "STATE_CONFLICT" ? "This claim changed in another tab. Reloading it."
         : "Something went wrong applying that step.";
       setErrors((x) => ({ ...x, [id]: msg }));
+      if (err instanceof ClaimsApiError && err.code === "STATE_CONFLICT") setClaims(await api.list());
     }
   }
 
-  function reset() {
-    store.clear();
-    setSeeded(seedDemoClaims(store));
-    setClaims(store.list());
+  async function reset() {
+    if (!api) return;
+    setClaims(await api.reset());
+    setErrors({});
   }
 
   const ordered = [...claims].sort((a, b) => (a.id === newId ? -1 : b.id === newId ? 1 : 0));
+  // Demo claims are the ones "filed" on the fixed seed date (see lib/client/seedDemoClaims.ts).
+  const seeded = claims.some((c) => (c.submittedAt ?? "").startsWith("2026-08-26"));
 
   return (
     <Shell step={5}>
@@ -67,17 +83,19 @@ function ClaimsInner() {
         <p className="mt-1 text-[15px] text-ink/85">
           A claim moves through the BLO, the ERO and — if rejected — the DEO. Each step here would arrive as an SMS.
         </p>
-        {seeded && (
+        {api && seeded && (
           <p className="mt-2 text-xs text-muted">
-            <MockBadge label="demo" /> Two claims were pre-loaded so the tracker is never empty.
+            <MockBadge label="demo" /> Two claims are pre-loaded so the tracker is never empty.
           </p>
         )}
       </header>
 
-      {ordered.length === 0 ? (
-        <p className="rounded-md border border-line bg-card px-4 py-6 text-center text-sm text-muted">
-          No claims yet. Start from your family board.
-        </p>
+      {loadError ? (
+        <p role="alert" className="rounded-md border border-stamp/40 bg-stamp-soft px-3 py-2 text-sm">{loadError}</p>
+      ) : !api ? (
+        <p className="text-sm text-muted">Loading claims…</p>
+      ) : ordered.length === 0 ? (
+        <p className="rounded-md border border-line bg-card px-4 py-6 text-center text-sm text-muted">No claims yet. Start from your family board.</p>
       ) : (
         <div className="space-y-4">
           {ordered.map((c) => (
@@ -86,10 +104,15 @@ function ClaimsInner() {
         </div>
       )}
 
-      <p className="mt-6 text-xs text-muted">
-        <button type="button" onClick={reset} className="underline underline-offset-2">Reset demo claims</button>
-        {" · "}Claims live in this phone’s browser storage; production would keep them server-side against the ECINET ack number.
-      </p>
+      {api && (
+        <p className="mt-6 text-xs text-muted">
+          <button type="button" onClick={reset} className="underline underline-offset-2">Reset demo claims</button>
+          {" · "}
+          {api.persistence === "postgres"
+            ? "Claims are stored server-side in Postgres, keyed by your household's EPIC — open this page on another device and they are still here."
+            : "No database is configured on this deployment, so claims live in this browser's storage."}
+        </p>
+      )}
 
       <ActionBar>
         <SecondaryButton onClick={() => router.push(hasHousehold ? "/household" : "/")}>

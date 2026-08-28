@@ -19,7 +19,7 @@ npm run gen                  # regenerate the synthetic rolls (deterministic)
 npm run dev
 ```
 
-Without an API key every AI step falls back to deterministic rules and says so in the interface.
+Without an API key every AI step falls back to deterministic rules and says so in the interface. Without `DATABASE_URL` claims fall back to browser storage and `/about` says so; with it (Neon via the Vercel integration) claims are shared between the citizen tracker and the officer queue across devices.
 
 ## Layout
 
@@ -29,7 +29,7 @@ Without an API key every AI step falls back to deterministic rules and says so i
 | `lib/diff` | Household resolution, name normalisation, fuzzy pre-filter, nine-way status classifier with provenance |
 | `lib/match` | OpenAI ranking of ambiguous identity matches, with rule-based fallback |
 | `lib/draft` | OpenAI Form 6/8 drafting (strict JSON schema, EN/KN/HI), with template fallback |
-| `lib/claims` | Deterministic claim state machine, deadlines, SMS-style notifications, demo script, storage interface |
+| `lib/claims` | Deterministic claim state machine, deadlines, SMS-style notifications, demo script; `db.ts` persists claims in Postgres (Neon) with server-side transitions and an optimistic state check |
 | `app/api/*` | Thin route handlers over the modules above |
 | `app/*` | Mobile-first citizen journey; `/about` is the honesty page |
 | `tests/` | Vitest suites for every `lib` module and the API routes — `npm test` |

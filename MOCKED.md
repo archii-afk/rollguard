@@ -8,6 +8,7 @@ RollGuard is a hackathon prototype. It is **not** an official Election Commissio
 - AI cross-script identity ranking for ambiguous matches (`lib/match`, OpenAI) with rule-based fallback
 - AI Form 6/8 drafting in English, Kannada, Hindi (`lib/draft`, OpenAI) with template fallback
 - Deterministic claim state machine with deadlines and notifications (`lib/claims`)
+- Claim persistence in Postgres (Neon) behind `/api/claims`, keyed by the household EPIC; transitions applied server-side with an optimistic state check. Without `DATABASE_URL` the app falls back to browser storage and says so on `/about`.
 
 ## Mocked
 | Boundary | How it is mocked | What production would need |
@@ -19,7 +20,7 @@ RollGuard is a hackathon prototype. It is **not** an official Election Commissio
 | ECINET submission + ack number | Locally generated ack | Form 6/8 API submission or assisted BLO filing |
 | BLO / ERO / DEO actions and timings | "Simulate next step" control walks scripted outcomes; `/blo` shows the officer-side queue with no real role switch | Integration with ERO-Net workflow events and officer authentication |
 | Deadlines | Constants in `lib/claims/config.ts` with source/assumption notes | Verified from ECI schedule per state |
-| Claim persistence | Browser localStorage via `ClaimStore` | Postgres implementation of the same interface |
+| Officer identity | Anyone can open `/blo` and act as the BLO | Officer authentication and an audit trail per transition |
 
 ## Known limitations
 - Form 6/8 field names are modelled on public ECI forms but not validated against the current ECINET schema.

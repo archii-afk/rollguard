@@ -1,19 +1,20 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Shell } from "@/components/Shell";
 import { MockBadge } from "@/components/MockBadge";
 import { STATE_LABELS } from "@/components/Timeline";
-import { LocalStorageClaimStore, transition, DEADLINES, type Claim, type ClaimState } from "@/lib/claims";
-import { seedDemoClaims } from "@/lib/client/seedDemoClaims";
+import { DEADLINES, type Claim, type ClaimEvent, type ClaimState } from "@/lib/claims";
+import { getClaimsApi, ClaimsApiError, type ClaimsApi } from "@/lib/client/remoteClaims";
 
 /**
  * The officer's side of the same state machine. A BLO sees claims for their part as a
- * work queue, with the evidence the citizen listed, and moves them with the same
- * transition() the citizen's tracker uses. Nothing here is a second source of truth.
+ * work queue and moves them with the same transition() the citizen's tracker uses —
+ * on the server when a database is configured, so both views read one source of truth.
  */
 const QUEUE: ClaimState[] = ["CLAIM_SUBMITTED", "BLO_FIELD_VERIFICATION", "ERO_HEARING_NOTICE", "REJECTED", "APPEAL_FILED", "RESTORED", "APPEAL_REJECTED"];
+const DEMO_EPIC = "ZZK1400001";
 
 const GROUND_TEXT: Record<Claim["ground"], string> = {
   ALIVE_RESIDENT: "Claims to be alive and ordinarily resident",
@@ -25,22 +26,36 @@ const GROUND_TEXT: Record<Claim["ground"], string> = {
 };
 
 export default function BloQueue() {
-  const store = useMemo(() => new LocalStorageClaimStore(), []);
+  const [api, setApi] = useState<ClaimsApi | null>(null);
   const [claims, setClaims] = useState<Claim[]>([]);
   const [msg, setMsg] = useState<string | null>(null);
 
   useEffect(() => {
-    seedDemoClaims(store);
-    setClaims(store.list());
-  }, [store]);
+    let live = true;
+    getClaimsApi(DEMO_EPIC)
+      .then(async (a) => {
+        const all = await a.listAll();
+        if (!live) return;
+        setApi(a);
+        setClaims(all);
+      })
+      .catch(() => live && setMsg("Could not load the queue. Reload to try again."));
+    return () => { live = false; };
+  }, []);
 
-  function act(c: Claim, e: Parameters<typeof transition>[1]) {
+  async function act(c: Claim, e: ClaimEvent) {
+    if (!api) return;
     try {
-      store.save(transition(c, e, new Date()));
-      setClaims(store.list());
+      const next = await api.apply(c, e);
+      setClaims((xs) => xs.map((x) => (x.id === c.id ? next : x)));
       setMsg(null);
     } catch (err) {
-      setMsg(err instanceof Error ? err.message : "Could not apply that action.");
+      if (err instanceof ClaimsApiError && err.code === "STATE_CONFLICT") {
+        setMsg("That claim was updated elsewhere — queue refreshed.");
+        setClaims(await api.listAll());
+      } else {
+        setMsg(err instanceof Error ? err.message : "Could not apply that action.");
+      }
     }
   }
 
@@ -56,7 +71,8 @@ export default function BloQueue() {
           {claims.length} claim{claims.length === 1 ? "" : "s"} for this part · {dueSoon} awaiting a field visit within {DEADLINES.bloVisitDays} days
         </p>
         <p className="mt-2 text-xs text-muted">
-          <MockBadge label="mock role" /> There is no officer login here. Every action below runs the same state machine the citizen’s tracker uses.{" "}
+          <MockBadge label="mock role" /> There is no officer login here. Every action below runs the same state machine the citizen’s tracker uses
+          {api?.persistence === "postgres" ? ", against the shared Postgres store" : ", in this browser"}.{" "}
           <Link href="/claims" className="underline underline-offset-2">Citizen view</Link>
         </p>
       </header>
@@ -65,7 +81,9 @@ export default function BloQueue() {
         <p role="alert" className="mb-4 rounded-md border border-stamp/40 bg-stamp-soft px-3 py-2 text-sm">{msg}</p>
       )}
 
-      {byState.length === 0 ? (
+      {!api ? (
+        <p className="text-sm text-muted">Loading queue…</p>
+      ) : byState.length === 0 ? (
         <p className="rounded-md border border-line bg-card px-4 py-6 text-center text-sm text-muted">Queue is empty.</p>
       ) : (
         byState.map(({ state, items }) => (

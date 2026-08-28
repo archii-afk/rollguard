@@ -10,7 +10,8 @@ import { FormPreview } from "@/components/FormPreview";
 import { loadHousehold, loadConfirmations, loadDraft, saveDraft } from "@/lib/client/session";
 import { applyConfirmation } from "@/lib/client/applyConfirmation";
 import { explainStatus, type MemberAssessment } from "@/lib/diff";
-import { createClaim, transition, LocalStorageClaimStore, DeadlineMissed, type Ground } from "@/lib/claims";
+import type { Ground } from "@/lib/claims";
+import { getClaimsApi, ClaimsApiError } from "@/lib/client/remoteClaims";
 import type { DraftResponse, HouseholdResponse } from "@/lib/api/types";
 
 const GROUNDS: Record<Ground, { title: string; detail: string }> = {
@@ -42,7 +43,6 @@ export default function ClaimDraftPage() {
   const [lang, setLang] = useState<Lang>("en");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const store = useMemo(() => new LocalStorageClaimStore(), []);
 
   useEffect(() => {
     const h = loadHousehold();
@@ -96,15 +96,20 @@ export default function ClaimDraftPage() {
     }
   }
 
-  function submit() {
+  async function submit() {
     if (!a || !draft || !ground) return;
+    setBusy(true);
     try {
-      const now = new Date();
-      const c = transition(createClaim({ memberId: a.member.id, memberName: a.member.name.en, form: draft.draft.form, ground }, now), { type: "SUBMIT" }, now);
-      store.save(c);
-      router.push(`/claims?new=${c.id}`);
+      const api = await getClaimsApi(epic);
+      const c = await api.create({ memberId: a.member.id, memberName: a.member.name.en, form: draft.draft.form, ground });
+      router.push(`/claims?new=${encodeURIComponent(c.id)}`);
     } catch (err) {
-      setError(err instanceof DeadlineMissed ? `The claims window has closed: ${err.message}` : "Could not submit the claim.");
+      setError(
+        err instanceof ClaimsApiError && err.code === "DEADLINE_MISSED"
+          ? `The claims window has closed: ${err.message}`
+          : "Could not submit the claim. Check your connection and try again.",
+      );
+      setBusy(false);
     }
   }
 
