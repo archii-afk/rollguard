@@ -83,7 +83,7 @@ function MatchConfirm({ assessment: a, epic, onConfirm }: { assessment: MemberAs
 
   const r = rank?.rankings.find((x) => x.candidateSerial === top.entry.serial);
   const probability = r?.sameProbability ?? Math.min(0.95, top.score + 0.2);
-  const reasons = r?.reasons ?? top.rules.map(humanRule);
+  const reasons = (r?.reasons ?? top.rules).map(humanRule);
 
   return (
     <div className="border-t border-dashed border-line bg-violet-soft/50 px-3 py-3 space-y-2">

@@ -20,7 +20,7 @@ const MOCKED = [
   ["Consent screen", "Static mock modelled on DigiLocker consent", "Consent artefact with audit log"],
   ["Evidence uploads", "Checklist only; nothing is stored", "DigiLocker fetch or upload with scanning and retention rules"],
   ["Submission and acknowledgement number", "Generated locally", "Form 6/8 API submission or assisted BLO filing"],
-  ["BLO, ERO and DEO actions", "“Simulate next step” walks a scripted outcome", "ERO-Net workflow events"],
+  ["BLO, ERO and DEO actions", "“Simulate next step” walks a scripted outcome; the officer queue at /blo has no real login", "ERO-Net workflow events and officer authentication"],
   ["Claim persistence", "This browser’s storage behind a ClaimStore interface", "Server-side store keyed by the acknowledgement number"],
 ];
 
@@ -85,6 +85,8 @@ export default function About() {
       <p className="mt-8 text-sm">
         <Link href="/" className="underline underline-offset-2 text-violet">Start the demo</Link>
         {" · "}Demo EPIC <span className="font-mono">ZZK1400001</span>
+        {" · "}<Link href="/household?epic=ZZK1400001" className="underline underline-offset-2 text-violet">Jump to the family board</Link>
+        {" · "}<Link href="/blo" className="underline underline-offset-2 text-violet">Officer queue</Link>
       </p>
     </Shell>
   );

@@ -17,7 +17,7 @@ RollGuard is a hackathon prototype. It is **not** an official Election Commissio
 | Consent screen | Static mock modelled on DigiLocker/ECINET consent | Real consent artefact + audit log |
 | Evidence uploads | Placeholder images, nothing stored | DigiLocker fetch or upload with virus scan + retention policy |
 | ECINET submission + ack number | Locally generated ack | Form 6/8 API submission or assisted BLO filing |
-| BLO / ERO / DEO actions and timings | "Simulate next step" control walks scripted outcomes | Integration with ERO-Net workflow events |
+| BLO / ERO / DEO actions and timings | "Simulate next step" control walks scripted outcomes; `/blo` shows the officer-side queue with no real role switch | Integration with ERO-Net workflow events and officer authentication |
 | Deadlines | Constants in `lib/claims/config.ts` with source/assumption notes | Verified from ECI schedule per state |
 | Claim persistence | Browser localStorage via `ClaimStore` | Postgres implementation of the same interface |
 
