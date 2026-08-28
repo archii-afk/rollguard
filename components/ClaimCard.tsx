@@ -75,7 +75,7 @@ export function ClaimCard({
         </section>
 
         <section>
-          <div className="flex items-center justify-between gap-2 mb-2">
+          <div className="flex flex-col gap-2 mb-2 sm:flex-row sm:items-center sm:justify-between">
             <h3 className="text-[11px] font-mono uppercase tracking-wider text-muted">Messages to your phone</h3>
             <LangTabs value={lang} onChange={setLang} />
           </div>
