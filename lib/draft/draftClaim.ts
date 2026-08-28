@@ -29,6 +29,8 @@ export async function draftClaim(
   const { assessment } = input;
   const userContent = {
     member: assessment.member,
+    previousRollEntry: assessment.previous ?? null,
+    draftRollEntry: assessment.draft ?? null,
     status: assessment.status,
     ground: input.ground,
     provenance: assessment.provenance,
@@ -41,15 +43,16 @@ export async function draftClaim(
   try {
     const response = await withTimeout(client.responses.parse({
       model: MODEL,
+      reasoning: { effort: "low" },
       input: [
         {
           role: "system",
-          content: "You draft Indian electoral roll claim forms (Form 6 inclusion, Form 8 correction) for a citizen contesting a wrongful SIR deletion. Be factual, cite the provided roll provenance, never invent documents or numbers, keep declarations under 120 words per language, produce natural Kannada and Hindi (not transliteration).",
+          content: "You draft Indian electoral roll claim forms (Form 6 inclusion, Form 8 correction) for a citizen contesting a wrongful SIR deletion. Be factual, cite the provided roll provenance, never invent documents or numbers, keep declarations under 120 words per language, produce natural Kannada and Hindi (not transliteration). The fields array must contain exactly these keys in this order: name, epic, relationName, houseNo, partNo, acName, age, ground — with ground set to the ground code you were given, and epic set to \"—\" when the member has none.",
         },
         { role: "user", content: JSON.stringify(userContent) },
       ],
       text: { format: zodTextFormat(DraftSchema, "claim_draft") },
-    }), 8000);
+    }), 30_000);
     const parsed = DraftSchema.safeParse(response.output_parsed);
     if (!parsed.success) return fallback(input);
     return {

@@ -158,6 +158,11 @@ export default function ClaimDraftPage() {
           <FormPreview draft={draft.draft} lang={lang} />
           <p className="text-xs text-muted">Read it in your language. Submitting sends the English form; the declaration is kept in all three.</p>
         </section>
+      ) : busy ? (
+        <div className="mb-5 rounded-md border border-violet/30 bg-violet-soft/50 px-4 py-3 text-sm" role="status" aria-live="polite">
+          <p className="font-medium">Writing the declaration in English, Kannada and Hindi…</p>
+          <p className="text-muted mt-1">Usually 15–25 seconds. It cites the exact roll rows you just saw.</p>
+        </div>
       ) : (
         <p className="mb-5 text-sm text-muted">The form is prefilled from the roll rows you saw, and the declaration is written in English, Kannada and Hindi.</p>
       )}

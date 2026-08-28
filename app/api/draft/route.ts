@@ -7,6 +7,7 @@ import { draftClaim } from "@/lib/draft";
 import { loadDraftRoll } from "@/lib/rolls/load";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 const DraftRequestSchema = z.object({
   epic: z.string().min(1),

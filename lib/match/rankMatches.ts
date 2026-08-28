@@ -55,7 +55,7 @@ export async function rankMatches(
       model: MODEL,
       input,
       text: { format: zodTextFormat(RankingSchema, "rankings") },
-    }), 8000);
+    }), 15_000);
     const parsed = RankingSchema.parse(response.output_parsed);
     return {
       rankings: parsed.rankings,

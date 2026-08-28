@@ -5,6 +5,7 @@ import { resolveHousehold } from "@/lib/diff";
 import { rankMatches } from "@/lib/match";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 const MatchRequestSchema = z.object({
   epic: z.string().min(1),

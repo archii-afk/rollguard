@@ -5,6 +5,7 @@ import { resolveHousehold } from "@/lib/diff";
 import { getOpenAI, MODEL } from "@/lib/openai/client";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 const HouseholdRequestSchema = z.object({ epic: z.string().min(1) });
 
