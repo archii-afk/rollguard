@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Shell, ActionBar, PrimaryButton, SecondaryButton } from "@/components/Shell";
-import { StatusChip, Stamp } from "@/components/StatusChip";
+import { StatusChip, Stamp, STATUS_META } from "@/components/StatusChip";
 import { ProvenanceCard } from "@/components/ProvenanceCard";
 import { loadHousehold, loadConfirmations } from "@/lib/client/session";
 import { applyConfirmation } from "@/lib/client/applyConfirmation";
@@ -48,8 +48,12 @@ export default function MemberDetail() {
           {a.member.name.en} <span className="lang-kn text-muted font-normal text-xl">{a.member.name.kn}</span>
         </h1>
         <div className="mt-2 flex items-center gap-3">
-          <StatusChip status={a.status} looksCorrect={a.looksCorrect} />
-          {!a.looksCorrect && <Stamp status={a.status} animate={false} />}
+          {/* The stamp already names the status; show the chip only when there is no stamp to show. */}
+          {a.looksCorrect || !STATUS_META[a.status].stamp ? (
+            <StatusChip status={a.status} looksCorrect={a.looksCorrect} />
+          ) : (
+            <Stamp status={a.status} animate={false} />
+          )}
         </div>
       </header>
 

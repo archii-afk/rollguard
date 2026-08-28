@@ -1,8 +1,19 @@
-import type { DraftOutput } from "@/lib/draft";
+import type { DraftOutput, DraftField } from "@/lib/draft";
 import type { Lang } from "./LangTabs";
 
 const LANG_CLASS: Record<Lang, string> = { en: "", kn: "lang-kn", hi: "lang-hi" };
 const FORM_TITLE = { "6": "Form 6 — Application for inclusion of name", "8": "Form 8 — Application for correction of entries" } as const;
+
+/** Ground codes are for the state machine; the paper form shows the citizen's words. */
+const GROUND_LABEL: Record<string, string> = {
+  ALIVE_RESIDENT: "Alive and ordinarily resident at this address",
+  NEVER_SHIFTED: "Never shifted from this address",
+  RESIDENT_WAS_AWAY: "Resident here; temporarily away",
+  NOT_DUPLICATE: "Same person entered twice — not a duplicate elector",
+  TURNED_18: "Attained 18 years; first inclusion",
+  CORRECT_DETAILS: "Correction of entry details",
+};
+const fieldValue = (f: DraftField) => (f.key === "ground" ? GROUND_LABEL[f.value] ?? f.value : f.value);
 
 /** The filled form, styled as the paper sheet the ERO's office actually handles. */
 export function FormPreview({ draft, lang }: { draft: DraftOutput; lang: Lang }) {
@@ -26,7 +37,7 @@ export function FormPreview({ draft, lang }: { draft: DraftOutput; lang: Lang })
               <th scope="row" className="w-[38%] py-1 pr-2 text-left font-normal text-muted">
                 {f.label}
               </th>
-              <td className="py-1 font-medium break-words">{f.value || "—"}</td>
+              <td className="py-1 font-medium break-words">{fieldValue(f) || "—"}</td>
             </tr>
           ))}
         </tbody>
