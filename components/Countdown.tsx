@@ -9,10 +9,10 @@ export function Countdown({ until, label = "to file a claim" }: { until: string;
   const urgent = d <= 7;
   const pretty = new Date(`${until}T00:00:00+05:30`).toLocaleDateString("en-IN", { day: "numeric", month: "long" });
   if (d < 0) {
-    return <p className="text-sm text-stamp font-medium">The window closed on {pretty}.</p>;
+    return <p className="docket-notice text-sm text-stamp font-medium">The window closed on {pretty}.</p>;
   }
   return (
-    <p className={`text-sm nums ${urgent ? "text-stamp" : "text-ink"}`}>
+    <p className={`docket-notice text-sm nums ${urgent ? "text-stamp" : "text-ink"}`}>
       <span className="font-display font-bold text-2xl leading-none align-baseline">{d}</span>{" "}
       <span className="font-medium">{d === 1 ? "day" : "days"}</span> left {label} · until {pretty}
     </p>

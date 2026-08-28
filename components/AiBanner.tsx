@@ -14,7 +14,7 @@ export function AiBanner({
 }) {
   if (source === "fallback") {
     return (
-      <div role="status" className="flex items-start gap-2 rounded-md border border-amber/50 bg-amber-soft px-3 py-2 text-sm text-ink">
+      <div role="status" className="docket-notice flex items-start gap-2 rounded-md border border-amber/50 bg-amber-soft px-3 py-2 text-sm text-ink">
         <Icon name="warning" className="mt-0.5 text-amber" />
         <span>
           <span className="font-semibold text-amber">AI unavailable</span> — showing the rule-based {what} instead. It is safe to use; it may read more mechanically.
@@ -23,7 +23,7 @@ export function AiBanner({
     );
   }
   return (
-    <div role="status" className="flex items-center gap-1.5 text-xs text-muted font-mono">
+    <div role="status" className="docket-notice flex items-center gap-1.5 text-xs text-muted font-mono">
       <Icon name="info" size={14} />
       <span>
         {what[0].toUpperCase() + what.slice(1)} by OpenAI {model ?? "model"}
