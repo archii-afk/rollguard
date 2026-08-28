@@ -116,7 +116,7 @@ export default function About() {
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
-    <section id={id} className="about-ledger-section">
+    <section id={id} className="about-ledger-section min-w-0">
       <h2 className="font-display font-semibold text-xl mb-2">{title}</h2>
       {children}
     </section>

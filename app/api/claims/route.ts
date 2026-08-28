@@ -31,10 +31,12 @@ function database(): PgClaimStore | null {
 }
 
 export async function GET(request: Request): Promise<Response> {
+  const searchParams = new URL(request.url).searchParams;
+  const probe = searchParams.get("probe") === "1";
   const store = database();
-  if (!store) return Response.json({ error: "NO_DB" }, { status: 503 });
+  if (!store) return probe ? Response.json({ persistence: "browser" }) : Response.json({ error: "NO_DB" }, { status: 503 });
+  if (probe) return Response.json({ persistence: "postgres" });
   try {
-    const searchParams = new URL(request.url).searchParams;
     if (searchParams.get("scope") === "all") {
       return Response.json({ claims: await store.listAll() });
     }

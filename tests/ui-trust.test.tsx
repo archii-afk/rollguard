@@ -29,4 +29,10 @@ describe("officer queue and trust ledger", () => {
     expect(html).toContain("AI on this deployment: disabled");
     expect(html).toContain("no database configured on this deployment");
   });
+
+  it("keeps each scrollable trust-ledger table inside its mobile grid column", () => {
+    const html = renderToStaticMarkup(<About />);
+
+    expect(html).toContain("about-ledger-section min-w-0");
+  });
 });

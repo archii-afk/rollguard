@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { normaliseName, jaroWinkler, prefilter, classifyMember, resolveAmbiguous, resolveHousehold, explainStatus } from "@/lib/diff";
+import { normaliseName, jaroWinkler, classifyMember, resolveAmbiguous, resolveHousehold, explainStatus } from "@/lib/diff";
 import { loadPreviousRoll, loadDraftRoll, loadHouseholds } from "@/lib/rolls/load";
 
 describe("normaliseName", () => {

@@ -228,6 +228,17 @@ npm run dev                     # http://localhost:3000
 
 Without `OPENAI_API_KEY` every AI step falls back to rules/templates and says so on screen. Without `DATABASE_URL` claims fall back to browser storage and `/claims` and `/about` say so.
 
+## Local UI verification
+
+### Responsive Civic Ledger checks
+
+- Mobile: 390 × 844 and 320 CSS pixels, no horizontal overflow, safe-area action bar clear of focused controls.
+- Desktop: 1440 × 1100, landing uses the story/docket split, claim drafting uses controls/preview, and tracker uses current-state/history columns.
+- Accessibility: visible keyboard focus, reduced-motion behavior, 200% zoom, status meaning without color, and explicit mock labels.
+- Honesty: unofficial-product footer, synthetic-data language, AI or fallback attribution, persistence disclosure, and mocked-role boundaries remain visible.
+
+For production-style local verification, unset `OPENAI_API_KEY`, set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true`, run `npm test && npm run lint && npm run build`, then serve the build with `npm run start -- -p <available-port>`. Capture the listed routes at the target mobile and desktop viewports, check 320 CSS pixels for horizontal overflow, and inspect the browser console before recording results.
+
 ---
 
 ## 7. State machine reference
