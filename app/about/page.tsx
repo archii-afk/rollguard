@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Shell } from "@/components/Shell";
+import { PageHeader } from "@/components/PageHeader";
 import { MockBadge } from "@/components/MockBadge";
 import { DEADLINES } from "@/lib/claims";
 
@@ -32,13 +33,27 @@ const MOCKED = [
 
 export default function About() {
   return (
-    <Shell title="What is real and what is mocked" wide>
-      <p className="text-[15px] text-ink/85 mb-6 max-w-prose">
+    <Shell width="workspace">
+      <PageHeader
+        eyebrow="Trust ledger"
+        title="What is real, what is mocked"
+        description="RollGuard is a prototype built on synthetic electoral-roll data."
+      />
+
+      <p className="about-disclosure">
         RollGuard is a hackathon prototype built for <em>Build What Moves India</em>. It is not an Election Commission of India product, uses no real
         voter data, and every simulated boundary is marked with a <MockBadge /> pill in the interface.
       </p>
 
-      <Section title="The problem it addresses">
+      <nav className="about-ledger-nav" aria-label="About this prototype">
+        <a href="#working">Working</a>
+        <a href="#mocked">Mocked</a>
+        <a href="#deadlines">Deadlines</a>
+        <a href="#limitations">Limitations</a>
+      </nav>
+
+      <div className="about-ledger-grid">
+      <Section id="problem" title="The problem it addresses">
         <ul className="list-disc pl-5 space-y-1 text-[15px] max-w-prose">
           <li>SIR Phase II removed 5.18 crore names across 12 states (10.2% of rolls), including 66.9 lakh marked deceased.</li>
           <li>Karnataka’s draft roll of 24 Aug 2026 placed 1.07 crore names in the absent / shifted / dead / duplicate lists; the CEO website went down the same day.</li>
@@ -48,18 +63,18 @@ export default function About() {
         <p className="mt-2 text-xs text-muted">Figures from ECI publications, PIB releases and parliamentary answers as of 27 Aug 2026.</p>
       </Section>
 
-      <Section title="Working today">
+      <Section id="working" title="Working today">
         <Table rows={WORKING} head={["Capability", "How"]} />
         <p className="mt-2 text-xs text-muted">
           AI on this deployment: {AI_ON ? `enabled (${MODEL})` : "disabled — every screen shows the rule-based fallback with a banner"}.
         </p>
       </Section>
 
-      <Section title="Mocked">
+      <Section id="mocked" title="Mocked">
         <Table rows={MOCKED} head={["Boundary", "In this prototype", "What production needs"]} />
       </Section>
 
-      <Section title="Deadlines used by the state machine">
+      <Section id="deadlines" title="Deadlines used by the state machine">
         <Table
           head={["Setting", "Value", "Source", ""]}
           rows={Object.entries(DEADLINES.notes).map(([k, n]) => [k, n.value, n.source, n.kind])}
@@ -69,7 +84,7 @@ export default function About() {
         />
       </Section>
 
-      <Section title="How it was built">
+      <Section id="built" title="How it was built">
         <p className="text-[15px] max-w-prose">
           The backend modules — roll diff engine, identity ranking, form drafting, claim state machine and their Vitest suites — and the API routes were
           implemented with OpenAI Codex working from a written spec and task plan, then reviewed with Codex’s code review. At runtime the app calls
@@ -78,7 +93,7 @@ export default function About() {
         </p>
       </Section>
 
-      <Section title="Known limitations">
+      <Section id="limitations" title="Known limitations">
         <ul className="list-disc pl-5 space-y-1 text-[15px] max-w-prose">
           <li>Form 6/8 fields follow the public ECI forms but are not validated against the live ECINET schema.</li>
           <li>The appeal timeline is an assumption pending verification of RPA 1950 s.24 practice.</li>
@@ -87,6 +102,7 @@ export default function About() {
           <li>Accessibility: 44 px targets, visible focus, semantic HTML; no full audit.</li>
         </ul>
       </Section>
+      </div>
 
       <p className="mt-8 text-sm">
         <Link href="/" className="underline underline-offset-2 text-violet">Start the demo</Link>
@@ -98,9 +114,9 @@ export default function About() {
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
-    <section className="mb-7">
+    <section id={id} className="about-ledger-section">
       <h2 className="font-display font-semibold text-xl mb-2">{title}</h2>
       {children}
     </section>
@@ -109,7 +125,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function Table({ head, rows, renderLast }: { head: string[]; rows: string[][]; renderLast?: (v: string) => React.ReactNode }) {
   return (
-    <div className="overflow-x-auto rounded-md border border-line bg-card">
+    <div className="about-ledger-table overflow-x-auto rounded-md border border-line bg-card" tabIndex={0}>
       <table className="w-full text-sm">
         <thead>
           <tr className="text-left text-[11px] font-mono uppercase tracking-wider text-muted border-b border-line">

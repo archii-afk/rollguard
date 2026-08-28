@@ -143,6 +143,61 @@ button:disabled { cursor: not-allowed; }
 .member-detail-law h2 { font-size: 1.125rem; }
 .member-detail-confirmation { padding: 0.75rem 0; }
 
+/* officer queue: a compact operations ledger, with state headers as the primary scan line */
+.queue-context { margin: -0.75rem 0 1rem; max-width: 48rem; }
+.queue-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+.queue-summary > div {
+  min-width: 0;
+  border: 1px solid var(--color-line);
+  border-top: 3px solid var(--color-violet);
+  border-radius: 0.25rem;
+  padding: 0.625rem 0.75rem;
+  background: var(--color-card);
+}
+.queue-summary dt,
+.queue-group-heading,
+.queue-group-count {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+.queue-summary dt { color: var(--color-muted); }
+.queue-summary dd { margin-top: 0.25rem; color: var(--color-violet); font-family: var(--font-display); font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 700; line-height: 1; }
+.queue-group { margin-bottom: 1.5rem; }
+.queue-group-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.625rem;
+  border-bottom: 1px solid var(--color-ink);
+  background: color-mix(in srgb, var(--color-paper-deep) 50%, transparent);
+  color: var(--color-ink);
+}
+.queue-group-count { color: var(--color-violet); }
+.queue-card-grid { display: grid; gap: 0.75rem; margin: 0; padding: 0; list-style: none; }
+.queue-card { min-width: 0; border: 1px solid var(--color-line); border-radius: 0.25rem; padding: 0.875rem 1rem; background: var(--color-card); box-shadow: 0 2px 8px rgb(0 0 0 / 6%); }
+.queue-card-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.875rem; padding-top: 0.75rem; border-top: 1px solid color-mix(in srgb, var(--color-line) 75%, transparent); }
+.queue-action { flex: 1 1 12rem; }
+
+/* the about page presents evidence as a navigable ledger; tables scroll rather than discard fields */
+.about-disclosure { max-width: 44rem; margin-bottom: 1rem; color: color-mix(in srgb, var(--color-ink) 90%, transparent); font-size: 0.9375rem; }
+.about-ledger-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; padding: 0.5rem 0; border-top: 1px solid var(--color-line); border-bottom: 1px solid var(--color-line); }
+.about-ledger-nav a { min-height: 2.75rem; display: inline-flex; align-items: center; padding: 0 0.625rem; color: var(--color-violet); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 0.2em; }
+.about-ledger-grid { display: grid; gap: 0; }
+.about-ledger-section { margin-bottom: 1.75rem; scroll-margin-top: 6.5rem; }
+.about-ledger-section h2 { margin-bottom: 0.5rem; font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; line-height: 1.2; }
+.about-ledger-table { -webkit-overflow-scrolling: touch; }
+.about-ledger-table table { min-width: 36rem; }
+
 /* claim preparation keeps decisions beside the resulting government form on larger screens */
 .claim-workspace { display: grid; gap: 1.5rem; align-items: start; }
 .claim-controls { display: grid; gap: 1.25rem; min-width: 0; }
@@ -249,6 +304,9 @@ button:disabled { cursor: not-allowed; }
   .household-summary { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .member-detail-grid { grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.55fr); gap: clamp(1.5rem, 4vw, 3rem); }
   .member-detail-grid > aside { position: sticky; top: 6.5rem; }
+  .queue-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about-ledger-grid { grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.75fr); gap: 0 2rem; }
+  .about-ledger-section:nth-child(1), .about-ledger-section:nth-child(4) { grid-column: 1 / -1; }
 }
 
 @media (min-width: 64rem) {
