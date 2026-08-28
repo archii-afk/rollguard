@@ -1,0 +1,2660 @@
+{
+  "vintage": "2025-01",
+  "acNo": 153,
+  "acName": "Shantinagar",
+  "partNo": 112,
+  "entries": [
+    {
+      "serial": 1,
+      "epic": "ZZK0100001",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "1",
+      "age": 61,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 2,
+      "epic": "ZZK0100002",
+      "name": {
+        "en": "Rukmini Bai",
+        "kn": "ರುಕ್ಮಿಣಿ ಬಾಯಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "1",
+      "age": 20,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 3,
+      "epic": "ZZK0100003",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "1",
+      "age": 42,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 4,
+      "epic": "ZZK0100004",
+      "name": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "1",
+      "age": 55,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 5,
+      "epic": "ZZK0100005",
+      "name": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "1",
+      "age": 33,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 6,
+      "epic": "ZZK0200006",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "2",
+      "age": 61,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 7,
+      "epic": "ZZK0200007",
+      "name": {
+        "en": "Fathima Bi",
+        "kn": "ಫಾತಿಮಾ ಬಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "2",
+      "age": 27,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 8,
+      "epic": "ZZK0200008",
+      "name": {
+        "en": "Rukmini Bai",
+        "kn": "ರುಕ್ಮಿಣಿ ಬಾಯಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "2",
+      "age": 32,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 9,
+      "epic": "ZZK0300009",
+      "name": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "3",
+      "age": 59,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 10,
+      "epic": "ZZK0300010",
+      "name": {
+        "en": "Fathima Bi",
+        "kn": "ಫಾತಿಮಾ ಬಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "3",
+      "age": 25,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 11,
+      "epic": "ZZK0300011",
+      "name": {
+        "en": "Geetha M",
+        "kn": "ಗೀತಾ ಎಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "3",
+      "age": 66,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 12,
+      "epic": "ZZK0300012",
+      "name": {
+        "en": "Ayesha Khanum",
+        "kn": "ಆಯಿಷಾ ಖಾನಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "3",
+      "age": 60,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 13,
+      "epic": "ZZK0300013",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "3",
+      "age": 23,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 14,
+      "epic": "ZZK0400014",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "4",
+      "age": 57,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 15,
+      "epic": "ZZK0400015",
+      "name": {
+        "en": "Mary Fernandes",
+        "kn": "ಮೇರಿ ಫೆರ್ನಾಂಡಿಸ್"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "4",
+      "age": 23,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 16,
+      "epic": "ZZK0400016",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "4",
+      "age": 43,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 17,
+      "epic": "ZZK0400017",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "4",
+      "age": 40,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 18,
+      "epic": "ZZK0400018",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "4",
+      "age": 22,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 19,
+      "epic": "ZZK0500019",
+      "name": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "5",
+      "age": 52,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 20,
+      "epic": "ZZK0500020",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "5",
+      "age": 52,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 21,
+      "epic": "ZZK0500021",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "5",
+      "age": 66,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 22,
+      "epic": "ZZK0500022",
+      "name": {
+        "en": "Lakshmi Devi",
+        "kn": "ಲಕ್ಷ್ಮಿ ದೇವಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "5",
+      "age": 67,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 23,
+      "epic": "ZZK0500023",
+      "name": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "5",
+      "age": 56,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 24,
+      "epic": "ZZK0600024",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "6",
+      "age": 63,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 25,
+      "epic": "ZZK0600025",
+      "name": {
+        "en": "Fathima Bi",
+        "kn": "ಫಾತಿಮಾ ಬಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "6",
+      "age": 25,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 26,
+      "epic": "ZZK0600026",
+      "name": {
+        "en": "Lakshmi Devi",
+        "kn": "ಲಕ್ಷ್ಮಿ ದೇವಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "6",
+      "age": 46,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 27,
+      "epic": "ZZK0600027",
+      "name": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "6",
+      "age": 62,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 28,
+      "epic": "ZZK0600028",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "6",
+      "age": 21,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 29,
+      "epic": "ZZK0700029",
+      "name": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "7",
+      "age": 53,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 30,
+      "epic": "ZZK0700030",
+      "name": {
+        "en": "Shobha Rani",
+        "kn": "ಶೋಭಾ ರಾಣಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "7",
+      "age": 56,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 31,
+      "epic": "ZZK0800031",
+      "name": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "8",
+      "age": 60,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 32,
+      "epic": "ZZK0800032",
+      "name": {
+        "en": "Fathima Bi",
+        "kn": "ಫಾತಿಮಾ ಬಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "8",
+      "age": 28,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 33,
+      "epic": "ZZK0800033",
+      "name": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "8",
+      "age": 52,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 34,
+      "epic": "ZZK0900034",
+      "name": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "9",
+      "age": 62,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 35,
+      "epic": "ZZK0900035",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "9",
+      "age": 34,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 36,
+      "epic": "ZZK1000036",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "10",
+      "age": 57,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 37,
+      "epic": "ZZK1000037",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "10",
+      "age": 23,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 38,
+      "epic": "ZZK1000038",
+      "name": {
+        "en": "Fathima Bi",
+        "kn": "ಫಾತಿಮಾ ಬಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "10",
+      "age": 47,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 39,
+      "epic": "ZZK1000039",
+      "name": {
+        "en": "Nagamma",
+        "kn": "ನಾಗಮ್ಮ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "10",
+      "age": 19,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 40,
+      "epic": "ZZK1100040",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "11",
+      "age": 54,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 41,
+      "epic": "ZZK1100041",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "11",
+      "age": 63,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 42,
+      "epic": "ZZK1100042",
+      "name": {
+        "en": "Geetha M",
+        "kn": "ಗೀತಾ ಎಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "11",
+      "age": 57,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 43,
+      "epic": "ZZK1100043",
+      "name": {
+        "en": "Rukmini Bai",
+        "kn": "ರುಕ್ಮಿಣಿ ಬಾಯಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "11",
+      "age": 39,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 44,
+      "epic": "ZZK1200044",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "12",
+      "age": 60,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 45,
+      "epic": "ZZK1200045",
+      "name": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "12",
+      "age": 25,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 46,
+      "epic": "ZZK1200046",
+      "name": {
+        "en": "Ayesha Khanum",
+        "kn": "ಆಯಿಷಾ ಖಾನಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "12",
+      "age": 65,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 47,
+      "epic": "ZZK1200047",
+      "name": {
+        "en": "Shobha Rani",
+        "kn": "ಶೋಭಾ ರಾಣಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "12",
+      "age": 49,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 48,
+      "epic": "ZZK1300048",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "13",
+      "age": 41,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 49,
+      "epic": "ZZK1300049",
+      "name": {
+        "en": "Shobha Rani",
+        "kn": "ಶೋಭಾ ರಾಣಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "13",
+      "age": 67,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 50,
+      "epic": "ZZK1500050",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "15",
+      "age": 44,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 51,
+      "epic": "ZZK1500051",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "15",
+      "age": 45,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 52,
+      "epic": "ZZK1500052",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "15",
+      "age": 28,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 53,
+      "epic": "ZZK1500053",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "15",
+      "age": 30,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 54,
+      "epic": "ZZK1600054",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "16",
+      "age": 46,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 55,
+      "epic": "ZZK1600055",
+      "name": {
+        "en": "Shobha Rani",
+        "kn": "ಶೋಭಾ ರಾಣಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "16",
+      "age": 64,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 56,
+      "epic": "ZZK1600056",
+      "name": {
+        "en": "Nagamma",
+        "kn": "ನಾಗಮ್ಮ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "16",
+      "age": 64,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 57,
+      "epic": "ZZK1600057",
+      "name": {
+        "en": "Nagamma",
+        "kn": "ನಾಗಮ್ಮ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "16",
+      "age": 40,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 58,
+      "epic": "ZZK1700058",
+      "name": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "17",
+      "age": 54,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 59,
+      "epic": "ZZK1700059",
+      "name": {
+        "en": "Ayesha Khanum",
+        "kn": "ಆಯಿಷಾ ಖಾನಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "17",
+      "age": 60,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 60,
+      "epic": "ZZK1700060",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "17",
+      "age": 28,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 61,
+      "epic": "ZZK1700061",
+      "name": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "17",
+      "age": 63,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 62,
+      "epic": "ZZK1800062",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "18",
+      "age": 42,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 63,
+      "epic": "ZZK1800063",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "18",
+      "age": 30,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 64,
+      "epic": "ZZK1800064",
+      "name": {
+        "en": "Nagamma",
+        "kn": "ನಾಗಮ್ಮ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "18",
+      "age": 23,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 65,
+      "epic": "ZZK1800065",
+      "name": {
+        "en": "Mary Fernandes",
+        "kn": "ಮೇರಿ ಫೆರ್ನಾಂಡಿಸ್"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "18",
+      "age": 42,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 66,
+      "epic": "ZZK1800066",
+      "name": {
+        "en": "Ayesha Khanum",
+        "kn": "ಆಯಿಷಾ ಖಾನಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "18",
+      "age": 48,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 67,
+      "epic": "ZZK1900067",
+      "name": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "19",
+      "age": 40,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 68,
+      "epic": "ZZK1900068",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "19",
+      "age": 58,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 69,
+      "epic": "ZZK1900069",
+      "name": {
+        "en": "Fathima Bi",
+        "kn": "ಫಾತಿಮಾ ಬಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "19",
+      "age": 18,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 70,
+      "epic": "ZZK1900070",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "19",
+      "age": 65,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 71,
+      "epic": "ZZK2000071",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "20",
+      "age": 59,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 72,
+      "epic": "ZZK2000072",
+      "name": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "20",
+      "age": 54,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 73,
+      "epic": "ZZK2000073",
+      "name": {
+        "en": "Geetha M",
+        "kn": "ಗೀತಾ ಎಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "20",
+      "age": 31,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 74,
+      "epic": "ZZK2000074",
+      "name": {
+        "en": "Ayesha Khanum",
+        "kn": "ಆಯಿಷಾ ಖಾನಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "20",
+      "age": 21,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 75,
+      "epic": "ZZK2000075",
+      "name": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "20",
+      "age": 67,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 76,
+      "epic": "ZZK2100076",
+      "name": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "21",
+      "age": 41,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 77,
+      "epic": "ZZK2100077",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "21",
+      "age": 64,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 78,
+      "epic": "ZZK2100078",
+      "name": {
+        "en": "Mary Fernandes",
+        "kn": "ಮೇರಿ ಫೆರ್ನಾಂಡಿಸ್"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "21",
+      "age": 27,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 79,
+      "epic": "ZZK2200079",
+      "name": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "22",
+      "age": 58,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 80,
+      "epic": "ZZK2200080",
+      "name": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "22",
+      "age": 25,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 81,
+      "epic": "ZZK2200081",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "22",
+      "age": 64,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 82,
+      "epic": "ZZK2200082",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "22",
+      "age": 45,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 83,
+      "epic": "ZZK2300083",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "23",
+      "age": 38,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 84,
+      "epic": "ZZK2300084",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "23",
+      "age": 57,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 85,
+      "epic": "ZZK2300085",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "23",
+      "age": 19,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 86,
+      "epic": "ZZK2300086",
+      "name": {
+        "en": "Lakshmi Devi",
+        "kn": "ಲಕ್ಷ್ಮಿ ದೇವಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "23",
+      "age": 42,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 87,
+      "epic": "ZZK2300087",
+      "name": {
+        "en": "Ayesha Khanum",
+        "kn": "ಆಯಿಷಾ ಖಾನಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "23",
+      "age": 42,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 88,
+      "epic": "ZZK2400088",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "24",
+      "age": 50,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 89,
+      "epic": "ZZK2400089",
+      "name": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "24",
+      "age": 67,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 90,
+      "epic": "ZZK2400090",
+      "name": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "24",
+      "age": 61,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 91,
+      "epic": "ZZK2400091",
+      "name": {
+        "en": "Ayesha Khanum",
+        "kn": "ಆಯಿಷಾ ಖಾನಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "24",
+      "age": 53,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 92,
+      "epic": "ZZK2500092",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "25",
+      "age": 46,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 93,
+      "epic": "ZZK2500093",
+      "name": {
+        "en": "Rukmini Bai",
+        "kn": "ರುಕ್ಮಿಣಿ ಬಾಯಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "25",
+      "age": 37,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 94,
+      "epic": "ZZK2500094",
+      "name": {
+        "en": "Mary Fernandes",
+        "kn": "ಮೇರಿ ಫೆರ್ನಾಂಡಿಸ್"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "25",
+      "age": 43,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 95,
+      "epic": "ZZK2500095",
+      "name": {
+        "en": "Shobha Rani",
+        "kn": "ಶೋಭಾ ರಾಣಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "25",
+      "age": 66,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 96,
+      "epic": "ZZK2600096",
+      "name": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "26",
+      "age": 39,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 97,
+      "epic": "ZZK2600097",
+      "name": {
+        "en": "Nagamma",
+        "kn": "ನಾಗಮ್ಮ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "26",
+      "age": 23,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 98,
+      "epic": "ZZK2700098",
+      "name": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "27",
+      "age": 45,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 99,
+      "epic": "ZZK2700099",
+      "name": {
+        "en": "Mary Fernandes",
+        "kn": "ಮೇರಿ ಫೆರ್ನಾಂಡಿಸ್"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "27",
+      "age": 56,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 100,
+      "epic": "ZZK2700100",
+      "name": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "27",
+      "age": 58,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 101,
+      "epic": "ZZK2700101",
+      "name": {
+        "en": "Mary Fernandes",
+        "kn": "ಮೇರಿ ಫೆರ್ನಾಂಡಿಸ್"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "houseNo": "27",
+      "age": 40,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 102,
+      "epic": "ZZK2800102",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "28",
+      "age": 50,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 103,
+      "epic": "ZZK2800103",
+      "name": {
+        "en": "Ayesha Khanum",
+        "kn": "ಆಯಿಷಾ ಖಾನಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "28",
+      "age": 46,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 104,
+      "epic": "ZZK2800104",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "28",
+      "age": 27,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 105,
+      "epic": "ZZK2800105",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "28",
+      "age": 28,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 106,
+      "epic": "ZZK2900106",
+      "name": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "29",
+      "age": 58,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 107,
+      "epic": "ZZK2900107",
+      "name": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "29",
+      "age": 44,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 108,
+      "epic": "ZZK2900108",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "29",
+      "age": 59,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 109,
+      "epic": "ZZK2900109",
+      "name": {
+        "en": "Shobha Rani",
+        "kn": "ಶೋಭಾ ರಾಣಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "29",
+      "age": 27,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 110,
+      "epic": "ZZK3000110",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "30",
+      "age": 37,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 111,
+      "epic": "ZZK3000111",
+      "name": {
+        "en": "Geetha M",
+        "kn": "ಗೀತಾ ಎಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "30",
+      "age": 19,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 112,
+      "epic": "ZZK3000112",
+      "name": {
+        "en": "Geetha M",
+        "kn": "ಗೀತಾ ಎಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "30",
+      "age": 53,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 113,
+      "epic": "ZZK3000113",
+      "name": {
+        "en": "Shobha Rani",
+        "kn": "ಶೋಭಾ ರಾಣಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "30",
+      "age": 41,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 114,
+      "epic": "ZZK3100114",
+      "name": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "31",
+      "age": 55,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 115,
+      "epic": "ZZK3100115",
+      "name": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "31",
+      "age": 53,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 116,
+      "epic": "ZZK3100116",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "31",
+      "age": 24,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 117,
+      "epic": "ZZK3100117",
+      "name": {
+        "en": "Nagamma",
+        "kn": "ನಾಗಮ್ಮ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "31",
+      "age": 49,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 118,
+      "epic": "ZZK3200118",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "32",
+      "age": 48,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 119,
+      "epic": "ZZK3200119",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "32",
+      "age": 45,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 120,
+      "epic": "ZZK3200120",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "32",
+      "age": 53,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 121,
+      "epic": "ZZK3200121",
+      "name": {
+        "en": "Fathima Bi",
+        "kn": "ಫಾತಿಮಾ ಬಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "32",
+      "age": 25,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 122,
+      "epic": "ZZK3200122",
+      "name": {
+        "en": "Nagamma",
+        "kn": "ನಾಗಮ್ಮ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "32",
+      "age": 27,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 123,
+      "epic": "ZZK3300123",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "33",
+      "age": 37,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 124,
+      "epic": "ZZK3300124",
+      "name": {
+        "en": "Lakshmi Devi",
+        "kn": "ಲಕ್ಷ್ಮಿ ದೇವಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "33",
+      "age": 37,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 125,
+      "epic": "ZZK3300125",
+      "name": {
+        "en": "Mary Fernandes",
+        "kn": "ಮೇರಿ ಫೆರ್ನಾಂಡಿಸ್"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "33",
+      "age": 56,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 126,
+      "epic": "ZZK3300126",
+      "name": {
+        "en": "Rukmini Bai",
+        "kn": "ರುಕ್ಮಿಣಿ ಬಾಯಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "33",
+      "age": 66,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 127,
+      "epic": "ZZK3400127",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "34",
+      "age": 39,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 128,
+      "epic": "ZZK3400128",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "34",
+      "age": 38,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 129,
+      "epic": "ZZK3400129",
+      "name": {
+        "en": "Nagamma",
+        "kn": "ನಾಗಮ್ಮ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "34",
+      "age": 38,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 130,
+      "epic": "ZZK3400130",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "34",
+      "age": 38,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 131,
+      "epic": "ZZK3500131",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "35",
+      "age": 55,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 132,
+      "epic": "ZZK3500132",
+      "name": {
+        "en": "Prakash Naik",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "35",
+      "age": 57,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 133,
+      "epic": "ZZK3500133",
+      "name": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "35",
+      "age": 35,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 134,
+      "epic": "ZZK3500134",
+      "name": {
+        "en": "Abdul Kareem",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "35",
+      "age": 26,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 135,
+      "epic": "ZZK3600135",
+      "name": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "houseNo": "36",
+      "age": 60,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 136,
+      "epic": "ZZK3600136",
+      "name": {
+        "en": "Fathima Bi",
+        "kn": "ಫಾತಿಮಾ ಬಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "36",
+      "age": 46,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 137,
+      "epic": "ZZK3600137",
+      "name": {
+        "en": "Mary Fernandes",
+        "kn": "ಮೇರಿ ಫೆರ್ನಾಂಡಿಸ್"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "36",
+      "age": 56,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 138,
+      "epic": "ZZK3700138",
+      "name": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "37",
+      "age": 59,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 139,
+      "epic": "ZZK3700139",
+      "name": {
+        "en": "Imtiyaz Ahmed",
+        "kn": "ಇಮ್ತಿಯಾಜ್ ಅಹಮದ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಸುರೇಶ್ ಗೌಡ"
+      },
+      "houseNo": "37",
+      "age": 37,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 140,
+      "epic": "ZZK3800140",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "38",
+      "age": 42,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 141,
+      "epic": "ZZK3800141",
+      "name": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "houseNo": "38",
+      "age": 54,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 142,
+      "epic": "ZZK3900142",
+      "name": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Suresh Gowda",
+        "kn": "ಅಬ್ದುಲ್ ಕರೀಮ್"
+      },
+      "houseNo": "39",
+      "age": 35,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 143,
+      "epic": "ZZK3900143",
+      "name": {
+        "en": "Basavaraj H",
+        "kn": "ಬಸವರಾಜ್ ಹೆಚ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "39",
+      "age": 51,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 144,
+      "epic": "ZZK3900144",
+      "name": {
+        "en": "Manjunath S",
+        "kn": "ಮಂಜುನಾಥ್ ಎಸ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Ravi Kumar",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "39",
+      "age": 63,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 145,
+      "epic": "ZZK4000145",
+      "name": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ರವಿ ಕುಮಾರ್"
+      },
+      "houseNo": "40",
+      "age": 43,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 146,
+      "epic": "ZZK4000146",
+      "name": {
+        "en": "Ayesha Khanum",
+        "kn": "ಆಯಿಷಾ ಖಾನಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "40",
+      "age": 22,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 147,
+      "epic": "ZZK4000147",
+      "name": {
+        "en": "Nagamma",
+        "kn": "ನಾಗಮ್ಮ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "40",
+      "age": 24,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 148,
+      "epic": "ZZK4000148",
+      "name": {
+        "en": "Shobha Rani",
+        "kn": "ಶೋಭಾ ರಾಣಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "40",
+      "age": 63,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 149,
+      "epic": "ZZK4000149",
+      "name": {
+        "en": "Mary Fernandes",
+        "kn": "ಮೇರಿ ಫೆರ್ನಾಂಡಿಸ್"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "40",
+      "age": 67,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 150,
+      "epic": "ZZK4100150",
+      "name": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Kareem",
+        "kn": "ಪ್ರಕಾಶ್ ನಾಯ್ಕ್"
+      },
+      "houseNo": "41",
+      "age": 38,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 151,
+      "epic": "ZZK4100151",
+      "name": {
+        "en": "Fathima Bi",
+        "kn": "ಫಾತಿಮಾ ಬಿ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Joseph D'Souza",
+        "kn": "ಜೋಸೆಫ್ ಡಿಸೋಜಾ"
+      },
+      "houseNo": "41",
+      "age": 56,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 152,
+      "epic": "ZZK1400001",
+      "name": {
+        "en": "Mohammed Rafeeq",
+        "kn": "ಮೊಹಮ್ಮದ್ ರಫೀಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Abdul Rasheed",
+        "kn": "ಅಬ್ದುಲ್ ರಶೀದ್"
+      },
+      "houseNo": "14",
+      "age": 46,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 153,
+      "epic": "ZZK1400002",
+      "name": {
+        "en": "Ameena Begum",
+        "kn": "ಅಮೀನಾ ಬೇಗಂ"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Abdul Rasheed",
+        "kn": "ಅಬ್ದುಲ್ ರಶೀದ್"
+      },
+      "houseNo": "14",
+      "age": 72,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 154,
+      "epic": "ZZK1400003",
+      "name": {
+        "en": "Salma Rafeeq",
+        "kn": "ಸಲ್ಮಾ ರಫೀಕ್"
+      },
+      "relationType": "H",
+      "relationName": {
+        "en": "Mohammed Rafeeq",
+        "kn": "ಮೊಹಮ್ಮದ್ ರಫೀಕ್"
+      },
+      "houseNo": "14",
+      "age": 43,
+      "gender": "F",
+      "partNo": 112
+    },
+    {
+      "serial": 155,
+      "epic": "ZZK1400004",
+      "name": {
+        "en": "Imran Rafeeq",
+        "kn": "ಇಮ್ರಾನ್ ರಫೀಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Mohammed Rafeeq",
+        "kn": "ಮೊಹಮ್ಮದ್ ರಫೀಕ್"
+      },
+      "houseNo": "14",
+      "age": 22,
+      "gender": "M",
+      "partNo": 112
+    },
+    {
+      "serial": 156,
+      "epic": "ZZK1400005",
+      "name": {
+        "en": "Farhan Rafeeq",
+        "kn": "ಫರ್ಹಾನ್ ರಫೀಕ್"
+      },
+      "relationType": "F",
+      "relationName": {
+        "en": "Mohammed Rafeeq",
+        "kn": "ಮೊಹಮ್ಮದ್ ರಫೀಕ್"
+      },
+      "houseNo": "14",
+      "age": 26,
+      "gender": "M",
+      "partNo": 112
+    }
+  ]
+}
