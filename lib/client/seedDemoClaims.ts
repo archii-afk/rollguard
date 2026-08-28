@@ -11,9 +11,12 @@ const DEMO: { memberId: string; memberName: string; ground: Ground }[] = [
   { memberId: "imran", memberName: "Imran Rafeeq", ground: "NEVER_SHIFTED" },
 ];
 
+/** Demo claims are always "filed" inside the claims window, so seeding never trips the SUBMIT deadline check. */
+const DEMO_FILED_AT = new Date("2026-08-26T10:00:00+05:30");
+
 export function seedDemoClaims(store: ClaimStore, now = new Date()): boolean {
   const existing = new Set(store.list().map((c) => c.memberId));
-  const submittedAt = new Date(now.getTime() - 2 * 86_400_000); // filed two days ago
+  const submittedAt = new Date(Math.min(now.getTime() - 2 * 86_400_000, DEMO_FILED_AT.getTime()));
   let seeded = false;
   for (const d of DEMO) {
     if (existing.has(d.memberId)) continue;

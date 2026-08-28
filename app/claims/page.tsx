@@ -25,11 +25,13 @@ function ClaimsInner() {
   const [claims, setClaims] = useState<Claim[]>([]);
   const [seeded, setSeeded] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const hasHousehold = typeof window !== "undefined" && !!loadHousehold();
+  // Read browser storage only after hydration so server and first client render agree.
+  const [hasHousehold, setHasHousehold] = useState(false);
 
   useEffect(() => {
     setSeeded(seedDemoClaims(store));
     setClaims(store.list());
+    setHasHousehold(!!loadHousehold());
   }, [store]);
 
   function onEvent(id: string, e: ClaimEvent) {

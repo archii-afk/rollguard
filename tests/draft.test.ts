@@ -32,3 +32,27 @@ describe("draftClaim", () => {
     expect((await draftClaim(input, { client: bad })).source).toBe("fallback");
   });
 });
+
+describe("reconcile — model prose, deterministic facts", () => {
+  it("overrides a wrong form number and ground, and fills dropped fields from the template", async () => {
+    const { reconcile } = await import("@/lib/draft/draftClaim");
+    const bad = {
+      form: "8" as const,
+      fields: [{ key: "name", label: "Name", value: "Ameena Begum" }, { key: "ground", label: "Ground", value: "NEVER_SHIFTED" }],
+      declaration: { en: "x", kn: "y", hi: "z" },
+      evidenceChecklist: [],
+    };
+    const fixed = reconcile(bad, input);
+    expect(fixed.form).toBe("6");
+    expect(fixed.fields.find((f) => f.key === "ground")?.value).toBe("ALIVE_RESIDENT");
+    expect(fixed.fields.find((f) => f.key === "epic")?.value).toBe("ZZK1400002");
+    expect(fixed.fields.find((f) => f.key === "houseNo")?.value).toBe("14");
+    expect(fixed.declaration.en).toBe("x");
+  });
+  it("draftClaim applies reconcile to model output", async () => {
+    const wrongForm = { ...templateDraft(input), form: "8" as const };
+    const fake = { responses: { parse: async () => ({ output_parsed: wrongForm }) } } as any;
+    const r = await draftClaim(input, { client: fake });
+    expect(r.source).toBe("openai"); expect(r.draft.form).toBe("6");
+  });
+});

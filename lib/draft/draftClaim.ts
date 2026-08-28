@@ -11,6 +11,22 @@ export interface DraftResult {
   promptVersion: "draft-v1";
 }
 
+/**
+ * The model writes prose; the rules decide facts. Whatever it returned, the form
+ * number and ground come from the deterministic inputs, and any required field it
+ * dropped is filled from the template so the citizen never sees a half-filled form.
+ */
+export function reconcile(draft: DraftOutput, input: DraftInput): DraftOutput {
+  const template = templateDraft(input);
+  const byKey = new Map(draft.fields.map((f) => [f.key, f]));
+  const fields = template.fields.map((tf) => {
+    if (tf.key === "ground") return { ...tf, value: input.ground };
+    const got = byKey.get(tf.key);
+    return got && got.value.trim() && got.value.trim() !== "—" ? { ...tf, label: got.label || tf.label, value: got.value } : tf;
+  });
+  return { ...draft, form: template.form, fields };
+}
+
 function fallback(input: DraftInput): DraftResult {
   return {
     draft: templateDraft(input),
@@ -56,7 +72,7 @@ export async function draftClaim(
     const parsed = DraftSchema.safeParse(response.output_parsed);
     if (!parsed.success) return fallback(input);
     return {
-      draft: parsed.data,
+      draft: reconcile(parsed.data, input),
       source: "openai",
       model: MODEL,
       promptVersion: "draft-v1",
