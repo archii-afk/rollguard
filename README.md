@@ -4,7 +4,7 @@
 
 The 2026 Special Intensive Revision of electoral rolls flagged crores of names as absent, shifted, dead or duplicate. Official portals check one name at a time. RollGuard takes one EPIC number, finds the whole household, diffs it across two roll snapshots, explains *why* each name was flagged (with the exact roll row it came from), drafts the Form 6/8 claim in English, Kannada and Hindi, and tracks the claim through BLO → ERO → speaking order → appeal, with the 23 September deadline counting down.
 
-- **Live demo:** _(added at deploy)_
+- **Live demo:** https://rollguard-eight.vercel.app — or jump straight to the family board: https://rollguard-eight.vercel.app/household?epic=ZZK1400001
 - **Demo EPIC:** `ZZK1400001` — the Rafeeq household, House 14, Part 112, AC-153 Shantinagar (fictional). Any six digits pass the mock OTP.
 - **What is real and what is mocked:** [`MOCKED.md`](./MOCKED.md), also rendered at `/about`.
 
