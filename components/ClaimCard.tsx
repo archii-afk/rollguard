@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Timeline } from "@/components/Timeline";
 import { NotificationFeed } from "@/components/NotificationFeed";
-import { LangTabs, type Lang } from "@/components/LangTabs";
+import { LangTabs, tabIdForLanguage, type Lang } from "@/components/LangTabs";
 import { Countdown } from "@/components/Countdown";
 import { MockBadge } from "@/components/MockBadge";
 import { DEADLINES, nextDemoEvent, type Claim, type ClaimEvent } from "@/lib/claims";
@@ -36,6 +36,7 @@ export function ClaimCard({
   const next = nextDemoEvent(claim);
   const done = claim.state === "RESTORED" || claim.state === "APPEAL_REJECTED";
   const tone = claim.state === "RESTORED" ? "border-ledger bg-ledger-soft/40" : claim.state === "APPEAL_REJECTED" || claim.state === "REJECTED" ? "border-stamp/50" : "border-line";
+  const messagesPanelId = `claim-${claim.id}-messages-panel`;
 
   return (
     <article className={`rounded-md border bg-card ${tone} ${isNew ? "ring-2 ring-violet/40" : ""}`}>
@@ -77,9 +78,9 @@ export function ClaimCard({
         <section>
           <div className="flex flex-col gap-2 mb-2 sm:flex-row sm:items-center sm:justify-between">
             <h3 className="text-[11px] font-mono uppercase tracking-wider text-muted">Messages to your phone</h3>
-            <LangTabs value={lang} onChange={setLang} />
+            <LangTabs value={lang} panelId={messagesPanelId} label="Message language" onChange={setLang} />
           </div>
-          <NotificationFeed items={claim.notifications} lang={lang} />
+          <NotificationFeed items={claim.notifications} lang={lang} panelId={messagesPanelId} tabId={tabIdForLanguage(messagesPanelId, lang)} />
         </section>
 
         {error && (

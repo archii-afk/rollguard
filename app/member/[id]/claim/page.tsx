@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Shell, ActionBar, PrimaryButton, SecondaryButton } from "@/components/Shell";
 import { AiBanner } from "@/components/AiBanner";
-import { LangTabs, type Lang } from "@/components/LangTabs";
+import { LangTabs, tabIdForLanguage, type Lang } from "@/components/LangTabs";
 import { FormPreview } from "@/components/FormPreview";
 import { CLAIM_EVIDENCE, ClaimDecisionFields } from "@/components/ClaimDecisionFields";
 import { PageHeader } from "@/components/PageHeader";
@@ -14,50 +14,86 @@ import { applyConfirmation } from "@/lib/client/applyConfirmation";
 import { explainStatus, type MemberAssessment } from "@/lib/diff";
 import type { Ground } from "@/lib/claims";
 import { getClaimsApi, ClaimsApiError } from "@/lib/client/remoteClaims";
-import type { DraftResponse, HouseholdResponse } from "@/lib/api/types";
+import type { DraftResponse } from "@/lib/api/types";
+
+const EMPTY_CONFIRMATIONS: Record<string, number | "none"> = {};
+
+function subscribeToSession() {
+  return () => {};
+}
+
+function useStoredSessionValue<T>(read: () => T, serverValue: T) {
+  const value = useRef<{ read: () => T; snapshot: T } | undefined>(undefined);
+  const getSnapshot = useCallback(() => {
+    if (!value.current || value.current.read !== read) value.current = { read, snapshot: read() };
+    return value.current.snapshot;
+  }, [read]);
+  const getServerSnapshot = useCallback(() => serverValue, [serverValue]);
+
+  return useSyncExternalStore(subscribeToSession, getSnapshot, getServerSnapshot);
+}
+
+export function deriveClaimWorkspaceInitialState<T extends { draft: { fields: { key: string; value: string }[] } }>(groundOptions: readonly Ground[], savedDraft: T | null) {
+  const savedGround = savedDraft?.draft.fields.find((field) => field.key === "ground")?.value as Ground | undefined;
+  return {
+    ground: savedGround ?? groundOptions[0] ?? null,
+    evidence: [] as string[],
+    draft: savedDraft,
+  };
+}
 
 export default function ClaimDraftPage() {
   const router = useRouter();
   const { id } = useParams<{ id: string }>();
-  const [data, setData] = useState<HouseholdResponse | null>(null);
-  const [a, setA] = useState<MemberAssessment | null>(null);
-  const [ground, setGround] = useState<Ground | null>(null);
-  const [evidence, setEvidence] = useState<string[]>([]);
-  const [draft, setDraft] = useState<DraftResponse | null>(null);
+  const data = useStoredSessionValue(loadHousehold, null);
+  const confirmations = useStoredSessionValue(loadConfirmations, EMPTY_CONFIRMATIONS);
+  const savedDraft = useStoredSessionValue(useCallback(() => loadDraft(id), [id]), null);
+
+  useEffect(() => {
+    const household = data ?? loadHousehold();
+    if (!household) {
+      router.replace("/");
+      return;
+    }
+    if (!household.assessments.some((assessment) => assessment.member.id === id)) router.replace("/household");
+  }, [data, id, router]);
+
+  const assessment = useMemo<MemberAssessment | null>(() => {
+    const raw = data?.assessments.find((item) => item.member.id === id);
+    return raw ? applyConfirmation(raw, confirmations[id]) : null;
+  }, [confirmations, data, id]);
+  const epic = data?.household.members.find((member) => member.epic)?.epic ?? "";
+
+  if (!data || !assessment) {
+    return (
+      <Shell step={4} width="workspace">
+        <ListSkeleton count={2} label="Preparing the claim" />
+      </Shell>
+    );
+  }
+
+  return <ClaimWorkspace key={`${id}:${savedDraft ? "saved" : "new"}`} id={id} epic={epic} assessment={assessment} savedDraft={savedDraft} />;
+}
+
+function ClaimWorkspace({
+  id,
+  epic,
+  assessment,
+  savedDraft,
+}: {
+  id: string;
+  epic: string;
+  assessment: MemberAssessment;
+  savedDraft: DraftResponse | null;
+}) {
+  const router = useRouter();
+  const options = useMemo(() => explainStatus(assessment.status).groundOptions, [assessment]);
+  const [workspace, setWorkspace] = useState(() => deriveClaimWorkspaceInitialState(options, savedDraft));
   const [lang, setLang] = useState<Lang>("en");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let current = true;
-    queueMicrotask(() => {
-      if (!current) return;
-      const h = loadHousehold();
-      if (!h) {
-        router.replace("/");
-        return;
-      }
-      const raw = h.assessments.find((x) => x.member.id === id);
-      if (!raw) {
-        router.replace("/household");
-        return;
-      }
-      const resolved = applyConfirmation(raw, loadConfirmations()[id]);
-      setData(h);
-      setA(resolved);
-      const availableGrounds = explainStatus(resolved.status).groundOptions;
-      setGround(availableGrounds[0] ?? null);
-      const existing = loadDraft(id);
-      if (existing) {
-        setDraft(existing);
-        setGround(existing.draft.fields.find((field) => field.key === "ground")?.value as Ground ?? availableGrounds[0] ?? null);
-      }
-    });
-    return () => { current = false; };
-  }, [id, router]);
-
-  const options = useMemo(() => (a ? explainStatus(a.status).groundOptions : []), [a]);
-  const epic = data?.household.members.find((m) => m.epic)?.epic ?? "";
+  const { ground, evidence, draft } = workspace;
+  const formPanelId = `claim-${id}-form-panel`;
 
   async function draftWithAi() {
     if (!ground) return;
@@ -75,9 +111,9 @@ export default function ClaimDraftPage() {
         setError("Could not draft the form right now. Try again.");
         return;
       }
-      const j = (await res.json()) as DraftResponse;
-      setDraft(j);
-      saveDraft(id, j);
+      const nextDraft = (await res.json()) as DraftResponse;
+      setWorkspace((current) => ({ ...current, draft: nextDraft }));
+      saveDraft(id, nextDraft);
     } catch {
       setError("Network problem while drafting. Try again.");
     } finally {
@@ -86,12 +122,12 @@ export default function ClaimDraftPage() {
   }
 
   async function submit() {
-    if (!a || !draft || !ground) return;
+    if (!draft || !ground) return;
     setBusy(true);
     try {
       const api = await getClaimsApi(epic);
-      const c = await api.create({ memberId: a.member.id, memberName: a.member.name.en, form: draft.draft.form, ground });
-      router.push(`/claims?new=${encodeURIComponent(c.id)}`);
+      const claim = await api.create({ memberId: assessment.member.id, memberName: assessment.member.name.en, form: draft.draft.form, ground });
+      router.push(`/claims?new=${encodeURIComponent(claim.id)}`);
     } catch (err) {
       setError(
         err instanceof ClaimsApiError && err.code === "DEADLINE_MISSED"
@@ -102,17 +138,9 @@ export default function ClaimDraftPage() {
     }
   }
 
-  if (!a || !data) {
-    return (
-      <Shell step={4} width="workspace">
-        <ListSkeleton count={2} label="Preparing the claim" />
-      </Shell>
-    );
-  }
-
   return (
     <Shell step={4} width="workspace">
-      <PageHeader eyebrow={`Form ${a.suggestedForm ?? "6"} · ${a.member.name.en}`} title="Build the claim" description="Choose the reason and supporting evidence, then review the prepared form." />
+      <PageHeader eyebrow={`Form ${assessment.suggestedForm ?? "6"} · ${assessment.member.name.en}`} title="Build the claim" description="Choose the reason and supporting evidence, then review the prepared form." />
 
       <div className="claim-workspace">
         <ClaimDecisionFields
@@ -120,16 +148,16 @@ export default function ClaimDraftPage() {
           options={options}
           evidence={evidence}
           evidenceOptions={ground ? CLAIM_EVIDENCE[ground] : []}
-          onGroundChange={(nextGround) => { setGround(nextGround); setDraft(null); setEvidence([]); }}
-          onEvidenceChange={setEvidence}
+          onGroundChange={(nextGround) => setWorkspace({ ground: nextGround, evidence: [], draft: null })}
+          onEvidenceChange={(nextEvidence) => setWorkspace((current) => ({ ...current, evidence: nextEvidence }))}
         />
 
         <aside className="claim-preview" aria-label="Form preview">
           {draft ? (
             <div className="space-y-3">
               <AiBanner source={draft.source} model={draft.model} what="draft" />
-              <LangTabs value={lang} onChange={setLang} />
-              <FormPreview draft={draft.draft} lang={lang} />
+              <LangTabs value={lang} panelId={formPanelId} label="Form language" onChange={setLang} />
+              <FormPreview draft={draft.draft} lang={lang} panelId={formPanelId} tabId={tabIdForLanguage(formPanelId, lang)} />
               <p className="text-xs text-muted">Read it in your language. Submitting sends the English form; the declaration is kept in all three.</p>
             </div>
           ) : busy ? (

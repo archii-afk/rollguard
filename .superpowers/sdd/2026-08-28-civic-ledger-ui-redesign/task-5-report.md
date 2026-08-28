@@ -53,3 +53,38 @@
 ## Concerns
 
 No known functional concerns. Layout behavior is covered by the shared CSS breakpoint implementation and server-rendered semantic tests; this task did not add a browser screenshot test.
+
+## Fix round 1 — tab wiring and snapshot-derived workspace state
+
+### Findings addressed
+
+- `LangTabs` no longer hard-codes any panel identifier. It accepts optional `panelId` and `label` props while preserving its existing `value` and `onChange` interface. Both real consumers now pass a distinct panel ID.
+- Each language tab has a deterministic ID, controls only its consumer's panel, exposes roving `tabIndex`, and supports ArrowLeft, ArrowRight, Home, and End. The pure `nextLanguageForKey` helper drives selection; focus follows the newly selected tab.
+- The claim form panel and each claim card's message panel use `role="tabpanel"`, their own IDs, and `aria-labelledby` pointing at the active language tab.
+- Replaced the claim page's `queueMicrotask`/effect-owned state initialization with the Task 4 `useSyncExternalStore` snapshot pattern. The parent derives household, confirmation, and per-member saved-draft snapshots; a keyed `ClaimWorkspace` lazily derives its first ground, evidence, and draft state from those props. The remaining effect performs redirects only.
+
+### RED → GREEN evidence
+
+1. RED: `env -u OPENAI_API_KEY VITE_CONFIG_NATIVE_IGNORE_WARNING=true npm test -- tests/ui-claim-draft.test.tsx`
+   - Failed as expected: four behavioral assertions failed because the tab-ID/key helper functions and snapshot-derived initial-state helper did not exist, and the tracker/form relationships remained incomplete.
+2. GREEN: the same test command passed after implementation: 1 file, 5 tests.
+
+### Verification
+
+- Affected focused suites:
+  `env -u OPENAI_API_KEY VITE_CONFIG_NATIVE_IGNORE_WARNING=true npm test -- tests/ui-claim-draft.test.tsx tests/draft.test.ts tests/api.test.ts tests/claims.test.ts`
+  - Passed: 4 files, 31 tests.
+- Full suite:
+  `env -u OPENAI_API_KEY VITE_CONFIG_NATIVE_IGNORE_WARNING=true npm test`
+  - Passed: 14 files, 75 tests.
+- Changed-file lint:
+  `VITE_CONFIG_NATIVE_IGNORE_WARNING=true npx eslint 'app/member/[id]/claim/page.tsx' components/LangTabs.tsx components/FormPreview.tsx components/ClaimCard.tsx components/NotificationFeed.tsx tests/ui-claim-draft.test.tsx`
+  - Passed with no findings.
+- Type check: `VITE_CONFIG_NATIVE_IGNORE_WARNING=true npx tsc --noEmit` passed.
+- Diff check: `git diff --check` passed.
+
+### Fix-round self-review
+
+- The visible form/claim behavior, draft API payload, deadline error, fallback state, routes, and action labels remain unchanged.
+- The saved draft still overrides the default ground, while a missing draft starts with the status's first eligible ground and empty evidence. The keyed child prevents previous-member edits from carrying into a new member workspace.
+- The page has no state setting inside its effect, and the member-specific saved-draft reader refreshes its snapshot if the route member ID changes.
