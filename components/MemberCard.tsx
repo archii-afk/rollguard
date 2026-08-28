@@ -31,8 +31,8 @@ export function MemberCard({
   const stampDelay = { animationDelay: `${120 + index * 90}ms` };
 
   return (
-    <article className={`record-card roll-paper ${actionable ? "border-stamp/40" : "border-line"}`}>
-      <button type="button" onClick={onOpen} aria-label={`${m.name.en}: ${a.looksCorrect ? "looks correct" : a.reason}`} className="pressable block w-full text-left px-3 pt-2 pb-3 hover:bg-violet-soft/40 rounded-sm">
+    <article className={`member-record record-card roll-paper ${a.status === "AMBIGUOUS_MATCH" && confirmation === undefined ? "member-record--expanded" : ""} ${actionable ? "border-stamp/40" : "border-line"}`}>
+      <button type="button" onClick={onOpen} aria-label={`${m.name.en}: ${a.looksCorrect ? "looks correct" : a.reason}`} className="member-record-open pressable block w-full text-left px-3 pt-2 pb-3 hover:bg-violet-soft/40 rounded-sm">
         <div className="mt-1 flex gap-3">
           <div className="h-12 w-10 shrink-0 border border-line bg-paper" aria-hidden />
           <div className="min-w-0 text-sm leading-snug">

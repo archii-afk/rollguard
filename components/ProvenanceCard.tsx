@@ -9,7 +9,7 @@ export function ProvenanceCard({ items }: { items: Provenance[] }) {
   if (!items.length) return null;
   return (
     <section aria-label="Where this comes from" className="record-card provenance-card">
-      <h3 className="px-3 py-2 text-[11px] font-mono uppercase tracking-wider text-muted border-b border-line">Source rows</h3>
+      <h3 className="px-3 py-2 text-[11px] font-mono uppercase tracking-wider text-muted border-b border-line">Source evidence</h3>
       <ul className="divide-y divide-line font-mono text-[13px]">
         {items.map((p, i) => (
           <li key={i} className="px-3 py-2 leading-snug">
