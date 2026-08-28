@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Shell, ActionBar, PrimaryButton } from "@/components/Shell";
 import { MemberCard } from "@/components/MemberCard";
-import { loadHousehold, loadConfirmations, saveConfirmation, type Confirmations } from "@/lib/client/session";
+import { loadHousehold, saveHousehold, loadConfirmations, saveConfirmation, type Confirmations } from "@/lib/client/session";
 import { applyConfirmation } from "@/lib/client/applyConfirmation";
 import type { HouseholdResponse } from "@/lib/api/types";
 import type { MemberAssessment } from "@/lib/diff";
@@ -16,12 +16,29 @@ export default function HouseholdBoard() {
 
   useEffect(() => {
     const h = loadHousehold();
-    if (!h) {
+    if (h) {
+      setData(h);
+      setConfirmations(loadConfirmations());
+      return;
+    }
+    // Deep link for judges and the demo video: /household?epic=ZZK1400001 skips the OTP/consent screens.
+    const epic = new URLSearchParams(window.location.search).get("epic");
+    if (!epic) {
       router.replace("/");
       return;
     }
-    setData(h);
-    setConfirmations(loadConfirmations());
+    fetch("/api/household", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ epic }) })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j: HouseholdResponse | null) => {
+        if (!j) {
+          router.replace("/");
+          return;
+        }
+        saveHousehold(j);
+        setData(j);
+        setConfirmations({});
+      })
+      .catch(() => router.replace("/"));
   }, [router]);
 
   const assessments: MemberAssessment[] = useMemo(() => {
