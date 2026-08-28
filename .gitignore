@@ -1,5 +1,5 @@
-# local-only planning artefacts
-docs/superpowers/
+# local visual-companion artefacts
+.superpowers/
 
 # deps / build
 node_modules/
