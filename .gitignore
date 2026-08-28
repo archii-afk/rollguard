@@ -1,5 +1,6 @@
 # local visual-companion artefacts
 .superpowers/
+.worktrees/
 
 # deps / build
 node_modules/
