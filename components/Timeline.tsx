@@ -1,4 +1,5 @@
 import type { ClaimState, HistoryEntry } from "@/lib/claims";
+import { Icon } from "@/components/Icon";
 
 /** Every state a claim can pass through, in the order the process runs. Order carries meaning here. */
 export const STATE_LABELS: Record<ClaimState, { title: string; who: string }> = {
@@ -29,23 +30,28 @@ export function Timeline({ history, current }: { history: HistoryEntry[]; curren
   const track = [...MAIN_TRACK, ...outcome];
 
   return (
-    <ol className="relative border-l-2 border-line ml-2 pl-5 space-y-4">
+    <ol className="relative border-l-2 border-line ml-2.5 pl-5 space-y-4">
       {track.map((s) => {
         const h = seen.get(s);
         const isCurrent = s === current;
         const done = !!h;
         const bad = s === "REJECTED" || s === "APPEAL_REJECTED";
-        const dot = done
-          ? bad ? "bg-stamp border-stamp" : "bg-violet border-violet"
-          : "bg-paper border-line";
+        /* state is encoded by fill AND a glyph, so it reads without colour */
+        const dot = done ? (bad ? "bg-stamp border-stamp text-white" : "bg-violet border-violet text-white") : "bg-paper border-line text-transparent";
         return (
           <li key={s} className="relative">
-            <span aria-hidden className={`absolute -left-[27px] top-1 h-3.5 w-3.5 rounded-full border-2 ${dot} ${isCurrent ? "ring-4 ring-violet/20" : ""}`} />
+            <span
+              aria-hidden
+              className={`absolute -left-[31px] top-0.5 flex h-5 w-5 items-center justify-center rounded-full border-2 ${dot} ${isCurrent ? "ring-4 ring-violet/20" : ""}`}
+            >
+              {done && <Icon name={bad ? "warning" : "check"} size={12} />}
+            </span>
             <div className={`text-[15px] leading-tight ${done ? "text-ink font-medium" : "text-muted"}`}>
               {STATE_LABELS[s].title}
               {isCurrent && <span className="ml-2 text-[10px] font-mono uppercase tracking-wider text-violet">now</span>}
+              {!done && <span className="sr-only"> (not yet)</span>}
             </div>
-            <div className="text-xs text-muted font-mono">
+            <div className="text-xs text-muted font-mono nums">
               {STATE_LABELS[s].who}
               {h && <> · {fmt(h.at)}</>}
             </div>

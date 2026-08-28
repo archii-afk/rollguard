@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Shell, ActionBar, PrimaryButton, SecondaryButton } from "@/components/Shell";
 import { StatusChip, Stamp, STATUS_META } from "@/components/StatusChip";
 import { ProvenanceCard } from "@/components/ProvenanceCard";
+import { ListSkeleton } from "@/components/Skeleton";
 import { loadHousehold, loadConfirmations } from "@/lib/client/session";
 import { applyConfirmation } from "@/lib/client/applyConfirmation";
 import { explainStatus, type MemberAssessment } from "@/lib/diff";
@@ -33,7 +34,13 @@ export default function MemberDetail() {
 
   const explain = useMemo(() => (a ? explainStatus(a.status) : null), [a]);
 
-  if (!a || !explain || !data) return <Shell step={4} />;
+  if (!a || !explain || !data) {
+    return (
+      <Shell step={4}>
+        <ListSkeleton count={2} label="Loading this entry" />
+      </Shell>
+    );
+  }
 
   const nothingToDo = a.looksCorrect || a.status === "RETAINED";
   const needsConfirm = a.status === "AMBIGUOUS_MATCH";

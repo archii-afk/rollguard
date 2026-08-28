@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { StatusChip, Stamp } from "@/components/StatusChip";
 import { AiBanner } from "@/components/AiBanner";
+import { Icon } from "@/components/Icon";
 import type { MemberAssessment } from "@/lib/diff";
 import type { MatchResponse } from "@/lib/api/types";
 
@@ -30,8 +31,8 @@ export function MemberCard({
 
   return (
     <article className={`roll-paper relative rounded-sm border shadow-[0_2px_8px_rgba(0,0,0,0.06)] ${actionable ? "border-stamp/40" : "border-line"}`}>
-      <button type="button" onClick={onOpen} className="block w-full text-left px-3 pt-2 pb-3 hover:bg-violet-soft/40 rounded-sm">
-        <div className="flex items-start justify-between font-mono text-[11px] text-muted">
+      <button type="button" onClick={onOpen} aria-label={`${m.name.en}: ${a.looksCorrect ? "looks correct" : a.reason}`} className="pressable block w-full text-left px-3 pt-2 pb-3 hover:bg-violet-soft/40 rounded-sm">
+        <div className="flex items-start justify-between font-mono text-[11px] text-muted nums">
           <span>{serial ? `Sl. ${serial}` : "not enumerated"} · {m.epic ?? "no EPIC yet"}</span>
           <span className="capitalize">{m.relationToHead}</span>
         </div>
@@ -47,7 +48,11 @@ export function MemberCard({
         </div>
         <div className="mt-2 flex flex-wrap items-center gap-2">
           <StatusChip status={a.status} looksCorrect={a.looksCorrect} />
-          {actionable && <span className="text-xs text-violet font-medium">Fix this →</span>}
+          {actionable && (
+            <span className="inline-flex items-center gap-1 text-xs text-violet font-medium">
+              Fix this <Icon name="arrow-right" size={14} />
+            </span>
+          )}
         </div>
         {a.looksCorrect ? (
           <p className="mt-1 text-sm text-muted">{m.name.en.split(" ")[0]} has moved and asked to shift — this deletion looks correct. No action.</p>
@@ -105,10 +110,10 @@ function MatchConfirm({ assessment: a, epic, onConfirm }: { assessment: MemberAs
       </div>
       <AiBanner source={rank ? rank.source : "fallback"} model={rank?.model} what="match" />
       <div className="flex gap-2 pt-1">
-        <button type="button" onClick={() => onConfirm(top.entry.serial)} className="min-h-[44px] flex-1 rounded-md bg-violet px-3 font-display font-semibold text-white">
+        <button type="button" onClick={() => onConfirm(top.entry.serial)} className="pressable min-h-[44px] flex-1 rounded-md bg-violet px-3 font-display font-semibold text-white hover:bg-[#3d2169]">
           Yes, that’s {a.member.name.en.split(" ")[0]}
         </button>
-        <button type="button" onClick={() => onConfirm("none")} className="min-h-[44px] rounded-md border border-ink/30 bg-card px-3 font-display font-semibold">
+        <button type="button" onClick={() => onConfirm("none")} className="pressable min-h-[44px] rounded-md border border-ink/30 bg-card px-3 font-display font-semibold hover:bg-paper">
           No
         </button>
       </div>

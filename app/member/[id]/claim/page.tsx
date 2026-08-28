@@ -7,6 +7,7 @@ import { MockBadge } from "@/components/MockBadge";
 import { AiBanner } from "@/components/AiBanner";
 import { LangTabs, type Lang } from "@/components/LangTabs";
 import { FormPreview } from "@/components/FormPreview";
+import { ListSkeleton } from "@/components/Skeleton";
 import { loadHousehold, loadConfirmations, loadDraft, saveDraft } from "@/lib/client/session";
 import { applyConfirmation } from "@/lib/client/applyConfirmation";
 import { explainStatus, type MemberAssessment } from "@/lib/diff";
@@ -113,7 +114,13 @@ export default function ClaimDraftPage() {
     }
   }
 
-  if (!a || !data) return <Shell step={4} />;
+  if (!a || !data) {
+    return (
+      <Shell step={4}>
+        <ListSkeleton count={2} label="Preparing the claim" />
+      </Shell>
+    );
+  }
 
   return (
     <Shell step={4}>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Shell } from "@/components/Shell";
 import { MockBadge } from "@/components/MockBadge";
 import { STATE_LABELS } from "@/components/Timeline";
+import { ListSkeleton } from "@/components/Skeleton";
 import { DEADLINES, type Claim, type ClaimEvent, type ClaimState } from "@/lib/claims";
 import { getClaimsApi, ClaimsApiError, type ClaimsApi } from "@/lib/client/remoteClaims";
 
@@ -82,7 +83,7 @@ export default function BloQueue() {
       )}
 
       {!api ? (
-        <p className="text-sm text-muted">Loading queue…</p>
+        <ListSkeleton count={2} label="Loading the queue" />
       ) : byState.length === 0 ? (
         <p className="rounded-md border border-line bg-card px-4 py-6 text-center text-sm text-muted">Queue is empty.</p>
       ) : (
@@ -147,7 +148,7 @@ function Btn({ children, onClick, tone = "default" }: { children: React.ReactNod
     <button
       type="button"
       onClick={onClick}
-      className={`min-h-[44px] rounded-md border px-3 text-sm font-medium ${
+      className={`pressable min-h-[44px] rounded-md border px-3 text-sm font-medium ${
         tone === "danger" ? "border-stamp/50 text-stamp bg-stamp-soft/50 hover:bg-stamp-soft" : "border-violet/40 text-violet bg-violet-soft/50 hover:bg-violet-soft"
       }`}
     >

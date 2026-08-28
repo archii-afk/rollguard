@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import {
-  IBM_Plex_Sans,
+  Atkinson_Hyperlegible,
   IBM_Plex_Sans_Condensed,
   IBM_Plex_Mono,
   IBM_Plex_Sans_Devanagari,
@@ -8,7 +8,9 @@ import {
 } from "next/font/google";
 import "./globals.css";
 
-const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-sans", display: "swap" });
+// Body: Atkinson Hyperlegible — designed for low-vision readers; its I/l/1 and 0/O are unambiguous,
+// which matters when a citizen reads an EPIC number or a roll serial off a phone.
+const sans = Atkinson_Hyperlegible({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-sans", display: "swap" });
 const display = IBM_Plex_Sans_Condensed({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-display", display: "swap" });
 const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono", display: "swap" });
 const devanagari = IBM_Plex_Sans_Devanagari({ subsets: ["devanagari"], weight: ["400", "500"], variable: "--font-hi", display: "swap" });

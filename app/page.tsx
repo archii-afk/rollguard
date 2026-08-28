@@ -5,11 +5,18 @@ import { useRouter } from "next/navigation";
 import { Shell, ActionBar, PrimaryButton } from "@/components/Shell";
 import { MockBadge } from "@/components/MockBadge";
 import { Countdown } from "@/components/Countdown";
+import { Icon, type IconName } from "@/components/Icon";
 import { saveHousehold, clearJourney } from "@/lib/client/session";
 import type { HouseholdResponse, ApiError } from "@/lib/api/types";
 
 const DEMO_EPIC = "ZZK1400001";
 const CLAIM_WINDOW_END = "2026-09-23";
+
+const BENEFITS: { icon: IconName; text: string }[] = [
+  { icon: "home", text: "Everyone at your house checked from one EPIC number" },
+  { icon: "info", text: "Why each name was flagged, with the exact roll row" },
+  { icon: "paper", text: "Form 6 or 8 drafted in your language, then tracked to the end" },
+];
 
 export default function Landing() {
   const router = useRouter();
@@ -71,6 +78,17 @@ export default function Landing() {
 
       <SampleEntry />
 
+      <ul className="mt-5 grid gap-2" aria-label="What RollGuard does">
+        {BENEFITS.map((b) => (
+          <li key={b.text} className="flex items-start gap-2.5 text-[15px]">
+            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-soft text-violet">
+              <Icon name={b.icon} size={14} />
+            </span>
+            <span>{b.text}</span>
+          </li>
+        ))}
+      </ul>
+
       <section className="mt-6 space-y-4" aria-live="polite">
         <label className="block">
           <span className="text-sm font-medium">Any one EPIC number from your house</span>
@@ -82,7 +100,7 @@ export default function Landing() {
             disabled={stage === "otp"}
             onChange={(e) => setEpic(e.target.value.toUpperCase().replace(/\s/g, ""))}
             placeholder="ZZK1234567"
-            className="mt-1 w-full min-h-[52px] rounded-md border border-ink/30 bg-card px-3 font-mono text-xl tracking-[0.12em] placeholder:text-muted/60 disabled:bg-paper"
+            className="mt-1 w-full min-h-[52px] rounded-md border border-ink/30 bg-card px-3 font-mono text-xl tracking-[0.12em] nums placeholder:text-muted/60 disabled:bg-paper transition-[border-color] duration-150"
           />
           <span className="mt-1 block text-xs text-muted">
             We find everyone enrolled at the same house.{" "}

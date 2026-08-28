@@ -12,7 +12,7 @@ export function Countdown({ until, label = "to file a claim" }: { until: string;
     return <p className="text-sm text-stamp font-medium">The window closed on {pretty}.</p>;
   }
   return (
-    <p className={`text-sm ${urgent ? "text-stamp" : "text-ink"}`}>
+    <p className={`text-sm nums ${urgent ? "text-stamp" : "text-ink"}`}>
       <span className="font-display font-bold text-2xl leading-none align-baseline">{d}</span>{" "}
       <span className="font-medium">{d === 1 ? "day" : "days"}</span> left {label} · until {pretty}
     </p>

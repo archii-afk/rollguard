@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Shell, ActionBar, PrimaryButton } from "@/components/Shell";
 import { MemberCard } from "@/components/MemberCard";
+import { Skeleton, ListSkeleton } from "@/components/Skeleton";
 import { loadHousehold, saveHousehold, loadConfirmations, saveConfirmation, type Confirmations } from "@/lib/client/session";
 import { applyConfirmation } from "@/lib/client/applyConfirmation";
 import type { HouseholdResponse } from "@/lib/api/types";
@@ -65,7 +66,18 @@ export default function HouseholdBoard() {
     setConfirmations((c) => ({ ...c, [memberId]: serial }));
   }
 
-  if (!data) return <Shell step={3} />;
+  if (!data) {
+    return (
+      <Shell step={3}>
+        <header className="mb-4 space-y-2" aria-hidden>
+          <Skeleton className="h-3 w-56" />
+          <Skeleton className="h-8 w-72" />
+          <Skeleton className="h-4 w-64" />
+        </header>
+        <ListSkeleton count={4} label="Reading the roll for your house" />
+      </Shell>
+    );
+  }
 
   const { household } = data;
   const summary = [

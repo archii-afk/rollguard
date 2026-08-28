@@ -94,7 +94,7 @@ export function ClaimCard({
               <button
                 type="button"
                 onClick={() => onEvent(claim.id, { type: "FILE_APPEAL" })}
-                className="min-h-[48px] flex-1 rounded-md bg-violet px-4 font-display font-semibold text-lg text-white"
+                className="pressable min-h-[48px] flex-1 rounded-md bg-violet px-4 font-display font-semibold text-lg text-white hover:bg-[#3d2169]"
               >
                 File appeal to the DEO
               </button>
@@ -103,7 +103,7 @@ export function ClaimCard({
               <button
                 type="button"
                 onClick={() => onEvent(claim.id, next)}
-                className="min-h-[48px] rounded-md border border-dashed border-muted/70 bg-paper px-4 text-sm font-medium text-ink hover:bg-violet-soft"
+                className="pressable min-h-[48px] rounded-md border border-dashed border-muted/70 bg-paper px-4 text-sm font-medium text-ink hover:bg-violet-soft"
               >
                 <MockBadge label="demo" /> <span className="ml-1">Simulate next step: {describe(next)}</span>
               </button>

@@ -15,7 +15,7 @@ export function LangTabs({ value, onChange }: { value: Lang; onChange: (l: Lang)
           role="tab"
           aria-selected={value === t.value}
           onClick={() => onChange(t.value)}
-          className={`min-h-[44px] min-w-[72px] rounded px-3 text-sm font-medium ${t.cls} ${
+          className={`pressable min-h-[44px] min-w-[72px] rounded px-3 text-sm font-medium ${t.cls} ${
             value === t.value ? "bg-violet text-white" : "text-ink hover:bg-paper"
           }`}
         >
