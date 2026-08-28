@@ -17,6 +17,13 @@ describe("Civic Ledger shell", () => {
     expect(renderToStaticMarkup(<ActionBar width="workspace">Act</ActionBar>)).toContain('aria-label="Page actions"');
   });
 
+  it("gives every shell link a 44 pixel target", () => {
+    const html = renderToStaticMarkup(<Shell>Body</Shell>);
+    for (const href of ["#main", "/", "/about"]) {
+      expect(html).toMatch(new RegExp(`<a(?=[^>]*href="${href}")(?=[^>]*min-h-11)(?=[^>]*min-w-11)[^>]*>`));
+    }
+  });
+
   it("renders a single semantic page heading", () => {
     const html = renderToStaticMarkup(<PageHeader eyebrow="Part 112" title="Your household" description="Review every name." />);
     expect(html.match(/<h1/g)).toHaveLength(1);

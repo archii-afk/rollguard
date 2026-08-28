@@ -105,6 +105,7 @@ button:disabled { cursor: not-allowed; }
     scroll-behavior: auto !important;
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
   }
   .animate-stamp, .skeleton { animation: none; }
   .pressable, .pressable:active:not(:disabled) { transition: none; transform: none; }

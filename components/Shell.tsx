@@ -35,10 +35,10 @@ export function Shell({
   const activePhase = step ? PHASES.find((phase) => phase.steps.some((phaseStep) => phaseStep === step)) : undefined;
   return (
     <div className="min-h-dvh flex flex-col">
-      <a href="#main" className="skip-link">Skip to content</a>
+      <a href="#main" className="skip-link inline-flex min-h-11 min-w-11 items-center justify-center">Skip to content</a>
       <header className="border-b border-line bg-paper/95 backdrop-blur sticky top-0 z-20">
         <div className={`mx-auto ${widthClass} px-page py-3 flex items-center justify-between gap-3`}>
-          <Link href="/" className="font-display font-bold text-xl tracking-tight text-violet uppercase leading-none rounded-sm">
+          <Link href="/" className="inline-flex min-h-11 min-w-11 items-center font-display font-bold text-xl tracking-tight text-violet uppercase leading-none rounded-sm">
             RollGuard
           </Link>
           {step ? (
@@ -71,7 +71,7 @@ export function Shell({
       <footer className="border-t border-line">
         <div className={`mx-auto ${widthClass} px-page py-4 text-xs text-muted flex flex-wrap gap-x-4 gap-y-1`}>
           <span>Not an official Election Commission product · synthetic data only</span>
-          <Link href="/about" className="underline underline-offset-2 hover:text-ink rounded-sm">
+          <Link href="/about" className="inline-flex min-h-11 min-w-11 items-center underline underline-offset-2 hover:text-ink rounded-sm">
             What is real and what is mocked
           </Link>
         </div>
